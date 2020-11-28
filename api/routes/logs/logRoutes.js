@@ -6,4 +6,10 @@ router.get('/', (req, res) => {
   res.json(logs)
 })
 
+router.post('/', (req, res) => {
+  const exercises = req.body;
+  logs.push(exercises)
+  console.log(logs)
+})
+
 module.exports = router;

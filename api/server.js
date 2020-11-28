@@ -2,11 +2,9 @@
 
 const mongoose = require('mongoose')
 const express = require('express')
-const bodyParser = require('body-parser');
 
 // 1. Create main express intance
 const app = express()
-// app.use(bodyParser.json());
 
 // 2. Require routes
 const { router: bookRoutes } = require('./routes/books/bookRoutes')

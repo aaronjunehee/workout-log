@@ -1,11 +1,6 @@
 import React from 'react';
+import AddLog from './AddLog';
 const uuid = require('uuid');
-
-const logInputs = [
-  { label: 'Exercise', type: 'text', ref: 'exercise' },
-  { label: 'Reps', type: 'text', ref: 'reps' },
-  { label: 'Sets', type: 'text', ref: 'sets' }
-]
 
 function Logs({ logs }) {
   return (
@@ -26,16 +21,7 @@ function Logs({ logs }) {
           </div>
         )
       })}
-      <form>
-        {logInputs.map((input) => {
-          return (
-            <label htmlFor={input.ref} key={uuid.v4()}>
-              {input.label}
-              <input id={input.ref} type={input.type} name={input.ref} />
-            </label>
-          )
-        })}
-      </form>
+      <AddLog />
     </div>
   );
 }
