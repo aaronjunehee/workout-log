@@ -1,15 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const logs = require('../data');
+const Log = require('../../models/Log')
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+  const logs = await Log.find()
   res.json(logs)
 })
 
-router.post('/', (req, res) => {
-  const exercises = req.body;
-  logs.push(exercises)
-  console.log(logs)
+router.post('/', async (req, res) => {
+  const logging = req.body;
+  const log = new Log(logging);
+  // exercises.forEach(exercise => {
+  //   log.exercises.push(exercise)
+  // })
+  await log.save();
 })
 
 module.exports = router;

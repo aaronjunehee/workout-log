@@ -6,6 +6,7 @@ function Logs({ logs }) {
   return (
     <div className="logs">
       {logs.length > 0 && logs.map((log) => {
+        console.log(log)
         return (
           <div key={uuid.v4()}>
             <h2>{log.date}</h2>

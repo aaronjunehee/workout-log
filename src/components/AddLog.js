@@ -28,7 +28,7 @@ function AddLog() {
       const response = await fetch("/api/logs", {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ exercises }),
+        body: JSON.stringify({ date: 'today', exercises }),
       });
     } catch {
       console.log('dksjdhfks')
