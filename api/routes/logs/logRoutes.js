@@ -14,6 +14,7 @@ router.post('/', async (req, res) => {
   //   log.exercises.push(exercise)
   // })
   await log.save();
+  res.sendStatus(200)
 })
 
 module.exports = router;

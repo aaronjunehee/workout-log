@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const ExerciseSchema = new mongoose.Schema({
+const exerciseSchema = new Schema({
   name: String,
   sets: String,
   reps: String,
 })
 
-module.exports = mongoose.model('Exercise', ExerciseSchema);
+module.exports = exerciseSchema

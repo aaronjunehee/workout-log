@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-
-// const logInputs = [
-//   { label: 'Name', type: 'text', id: 'name' },
-//   { label: 'Reps', type: 'text', id: 'reps' },
-//   { label: 'Sets', type: 'text', id: 'sets' }
-// ]
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const newExercise = { name: '', sets: '', reps: '' }
 
-function AddLog() {
+function AddLog(props) {
   const [exercises, setExercises] = useState([{...newExercise}]);
+  const [date, setDate] = useState(new Date());
 
   const addExerciseRow = (e) => {
     const exerciseToAdd = [...exercises];
@@ -28,8 +25,11 @@ function AddLog() {
       const response = await fetch("/api/logs", {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ date: 'today', exercises }),
-      });
+        body: JSON.stringify({ date: date.toLocaleDateString(), exercises }),
+      })
+      if (response.ok) {
+        props.onAdd()
+      }
     } catch {
       console.log('dksjdhfks')
     }
@@ -41,6 +41,7 @@ function AddLog() {
 
   return (
     <form onSubmit={saveExercises}>
+      <Calendar onChange={setDate} value={date} />
       {exercises.map((exercise, i) => {
         return (
           <fieldset onChange={(e) => updateExerciseField(e, i)} key={i}>

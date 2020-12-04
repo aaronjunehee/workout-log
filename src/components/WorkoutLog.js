@@ -1,8 +1,24 @@
 import React from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import AddLog from './AddLog';
 const uuid = require('uuid');
 
-function Logs({ logs }) {
+function WorkoutLog() {
+  const [logs, setLogs] = useState([]);
+
+  const refresh = useCallback(async () => {
+    try {
+      const response = await fetch('/api/logs');
+      const data = await response.json();
+      setLogs(data)
+    } catch (e) {
+      console.log(e)
+    }
+  }, [])
+
+  useEffect(() => {
+    refresh()
+  }, [refresh])
   return (
     <div className="logs">
       {logs.length > 0 && logs.map((log) => {
@@ -22,8 +38,8 @@ function Logs({ logs }) {
           </div>
         )
       })}
-      <AddLog />
+      <AddLog onAdd={refresh} />
     </div>
   );
 }
-export default Logs;
+export default WorkoutLog;
