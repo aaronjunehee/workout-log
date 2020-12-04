@@ -18,3 +18,24 @@ exports.createLog = async (data) => {
     throw err
   }
 }
+
+exports.findLog = async (data) => {
+  try {
+    const [existingLog] = await Log.find({ date: data.date })
+    return existingLog
+  } catch (err) {
+    throw err
+  }
+}
+
+exports.updateLog = async (db, newData) => {
+  try {
+    newData.exercises.map(exercise => {
+      db.exercises.push(exercise)
+    })
+    const updatedLog = await db.save()
+    return updatedLog
+  } catch (err) {
+    throw err
+  }
+}
