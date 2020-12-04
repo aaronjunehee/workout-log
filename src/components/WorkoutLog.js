@@ -19,6 +19,7 @@ function WorkoutLog() {
   useEffect(() => {
     refresh()
   }, [refresh])
+
   return (
     <div className="logs">
       {logs.length > 0 && logs.map((log) => {
