@@ -9,9 +9,9 @@ exports.getLogs = async () => {
   }
 }
 
-exports.createLog = async (data) => {
+exports.createLog = async ({ date, exercises }) => {
   try {
-    const newLog = new Log(data)
+    const newLog = new Log({ date, exercises })
     const log = await newLog.save()
     return log
   } catch (err) {
@@ -19,18 +19,18 @@ exports.createLog = async (data) => {
   }
 }
 
-exports.findLog = async (data) => {
+exports.findLog = async ({ date }) => {
   try {
-    const [existingLog] = await Log.find({ date: data.date })
+    const [existingLog] = await Log.find({ date })
     return existingLog
   } catch (err) {
     throw err
   }
 }
 
-exports.updateLog = async (db, newData) => {
+exports.updateLog = async (db, { exercises }) => {
   try {
-    newData.exercises.map(exercise => {
+    exercises.map(exercise => {
       db.exercises.push(exercise)
     })
     const updatedLog = await db.save()

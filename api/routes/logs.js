@@ -21,4 +21,4 @@ router.route('/')
     res.json(log)
   })
 
-module.exports = router;
+module.exports = router
