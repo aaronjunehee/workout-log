@@ -4,7 +4,10 @@ const exerciseSchema = require('./exerciseSchema')
 const { Schema } = mongoose
 
 const LogSchema = new Schema({
-  date: { type: String, required: true },
+  date: { 
+    type: String,
+    required: true,
+  },
   exercises: [exerciseSchema]
 })
 

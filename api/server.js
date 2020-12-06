@@ -14,7 +14,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/api/logs', logsRouter)
-// app.use('/api/users', usersRouter)
+app.use('/api/users', usersRouter)
 
 
 const MONGO_CONFIG = { useNewUrlParser: true, useUnifiedTopology: true }
