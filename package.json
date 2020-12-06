@@ -26,6 +26,7 @@
     "express": "^4.17.1",
     "init-package-json": "^1.10.3",
     "mongoose": "^5.7.10",
+    "node-sass": "^4.14.1",
     "nodemon": "^1.19.4",
     "react": "^16.14.0",
     "react-calendar": "^3.2.1",
