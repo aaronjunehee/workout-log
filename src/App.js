@@ -52,7 +52,7 @@ function App() {
               />
               <Route
                 path='/'
-                render={() => !user ? <Redirect to='/signup' /> : <WorkoutLog />}
+                render={props => !user ? <Redirect to='/signup' /> : <WorkoutLog {...props} />}
               />
           </Switch>
         </Router>

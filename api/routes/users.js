@@ -1,8 +1,9 @@
 const express = require('express')
-const router = express.Router()
 const { createUser, findUserByEmail, findUserById } = require('../controllers/users')
 const { verifyToken } = require('../middleware/verifyToken')
 const { createToken } = require('../tokens/tokenService')
+
+const router = express.Router()
 
 router.route('/')
   .post(async (req, res) => {
@@ -55,7 +56,6 @@ router.route('/login')
 
 router.route('/logout')
   .get(async (req, res) => {
-    console.log(req)
     res.clearCookie('token')
     res.status(200).send({})
   })

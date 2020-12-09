@@ -22,7 +22,7 @@ function AddLog(props) {
   const saveExercises = async e => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/logs", {
+      const response = await fetch('/api/logs', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ date: date.toLocaleDateString(), exercises }),

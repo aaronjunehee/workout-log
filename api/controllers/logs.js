@@ -1,17 +1,20 @@
 const Log = require('../models/Log')
 
-exports.getLogs = async () => {
+exports.getLogsByUser = async (userID) => {
   try {
-    const logs = await Log.find()
+    const logs = await Log
+      .find({ user: userID })
+      .populate({ path: 'user', select: 'firstName lastName' })
     return logs
   } catch (err) {
     throw err
   }
 }
 
-exports.createLog = async ({ date, exercises }) => {
+exports.createLog = async ({ date, exercises, user }) => {
+  console.log('controller', user)
   try {
-    const newLog = new Log({ date, exercises })
+    const newLog = new Log({ date, exercises, user })
     const log = await newLog.save()
     return log
   } catch (err) {
@@ -19,9 +22,9 @@ exports.createLog = async ({ date, exercises }) => {
   }
 }
 
-exports.findLog = async ({ date }) => {
+exports.findLog = async ({ date, user }) => {
   try {
-    const [existingLog] = await Log.find({ date })
+    const [existingLog] = await Log.find({ date, user })
     return existingLog
   } catch (err) {
     throw err

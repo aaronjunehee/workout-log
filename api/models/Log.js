@@ -8,7 +8,11 @@ const LogSchema = new Schema({
     type: String,
     required: true,
   },
-  exercises: [exerciseSchema]
+  exercises: [exerciseSchema],
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
 })
 
 module.exports = mongoose.model('Log', LogSchema)
