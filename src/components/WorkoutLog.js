@@ -52,7 +52,7 @@ function WorkoutLog(props) {
                       <li className="name"><h3>{exercise.name}</h3></li>
                       <li className="reps">{`${exercise.reps} reps`}</li>
                       <li className="sets">{`${exercise.sets} sets`}</li>
-                      <li className="weight"><div>65lbs</div></li>
+                      <li className="weight"><div>{`${exercise.weight} lbs`}</div></li>
                     </ul>
                   </li>
                 )
