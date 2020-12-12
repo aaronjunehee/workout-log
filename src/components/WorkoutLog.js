@@ -8,6 +8,7 @@ const uuid = require('uuid');
 function WorkoutLog(props) {
   const [logs, setLogs] = useState([]);
   const [date, setDate] = useState(new Date());
+  const [isLogging, setIsLogging] = useState(false);
 
   const refresh = useCallback(async () => {
     try {
@@ -29,6 +30,13 @@ function WorkoutLog(props) {
     return `${dayOfWeek}, ${month} ${dayOfMonth}`
   }
 
+  const getNumOfExercises = () => {
+    if (logs.length === 0) {
+      return ''
+    }
+    return `(${logs[0].exercises.length})`
+  }
+
   useEffect(() => {
     refresh()
   }, [refresh])
@@ -40,15 +48,16 @@ function WorkoutLog(props) {
       </section>
       <section className="logs">
         <header>
-          <h2>{ createDateHeader() }</h2>
+          <h2>{ `${createDateHeader()} ${getNumOfExercises()}` }</h2>
         </header>
         {logs.length > 0 && logs.map((log) => {
+          console.log(logs)
           return (
             <ul>
               {log.exercises.map((exercise) => {
                 return (
                   <li key={uuid.v4()} className="log">
-                    <ul class="exercise">
+                    <ul className="exercise">
                       <li className="name"><h3>{exercise.name}</h3></li>
                       <li className="reps">{`${exercise.reps} reps`}</li>
                       <li className="sets">{`${exercise.sets} sets`}</li>
@@ -62,8 +71,8 @@ function WorkoutLog(props) {
         })}
       </section>
       <section className="addLog">
-        <button onClick={(e) => { props.logOut(e) }}>Log Out</button>
-        <AddLog onAdd={refresh} date={date} />
+        {/* <button onClick={(e) => { props.logOut(e) }}>Log Out</button> */}
+        {isLogging ? <AddLog onAdd={refresh} date={date} /> : <button onClick={() => { setIsLogging(!isLogging) }} className="log-workout-button">Log Workout</button>}
       </section>
     </div>
   );

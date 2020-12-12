@@ -31,9 +31,9 @@
     border-radius: 12px;
     box-shadow: 3px 3px 7px 1px #88888838;
     background: white;
-    padding: 15px;
   }
   section.logs {
+    padding: 15px;
     header {
       font-size: 1.6rem;
       color: rgb(38, 38, 38);
@@ -87,5 +87,14 @@
       border-radius: 0 8px 8px 0;
       font-weight: bold;
     }
+  }
+  .log-workout-button {
+    width: 100%;
+    padding: 12px 10px 8px;
+    background-color: #48c774;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
   }
 }
