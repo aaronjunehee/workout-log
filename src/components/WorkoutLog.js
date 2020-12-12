@@ -1,10 +1,14 @@
 import React from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 import { useEffect, useState, useCallback } from 'react';
 import AddLog from './AddLog';
 const uuid = require('uuid');
 
 function WorkoutLog(props) {
   const [logs, setLogs] = useState([]);
+  const [date, setDate] = useState(new Date());
+
   const refresh = useCallback(async () => {
     try {
       const response = await fetch('/api/logs')
@@ -21,6 +25,7 @@ function WorkoutLog(props) {
 
   return (
     <div className="logs">
+      <Calendar onChange={setDate} value={date} />
       <button onClick={(e)=>{props.logOut(e)}}>Log Out</button>
       {logs.length > 0 && logs.map((log) => {
         return (
@@ -38,7 +43,7 @@ function WorkoutLog(props) {
           </div>
         )
       })}
-      <AddLog onAdd={refresh} />
+      <AddLog onAdd={refresh} date={date} />
     </div>
   );
 }
