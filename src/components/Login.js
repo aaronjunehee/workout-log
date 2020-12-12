@@ -36,21 +36,19 @@ function Login(props) {
   }
 
   return (
-    <form>
+    <form className="login">
       <fieldset>
-        <label htmlFor="email">
-          Email
+        <label htmlFor="email">Email</label>
         <input type="text" name="email" id="email" defaultValue={email} onChange={(e) => setEmail(e.target.value)} />
-        </label>
-        <label htmlFor="password">
-          Password
+        <label htmlFor="password">Password</label>
         <input type="text" name="password" id="password" defaultValue={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
       </fieldset>
-      <button onClick={handleSubmit}>Submit</button>
-      <Link to="/signup">
-        Don't have an account? Sign Up
-      </Link>
+      <button onClick={handleSubmit}>Log In</button>
+      <div className="signup-button">
+        <Link to="/signup">
+          Create New Account
+        </Link>
+      </div>
     </form>
   );
 }
