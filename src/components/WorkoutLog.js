@@ -11,13 +11,15 @@ function WorkoutLog(props) {
 
   const refresh = useCallback(async () => {
     try {
-      const response = await fetch('/api/logs')
+      const response = await fetch('/api/logs?' + new URLSearchParams({
+        date: date.toLocaleDateString()
+      }))
       const data = await response.json();
       setLogs(data)
     } catch (e) {
       console.log(e)
     }
-  }, [])
+  }, [date])
 
   useEffect(() => {
     refresh()

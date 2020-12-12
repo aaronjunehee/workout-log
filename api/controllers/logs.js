@@ -1,9 +1,9 @@
 const Log = require('../models/Log')
 
-exports.getLogsByUser = async (userID) => {
+exports.getLogsByUser = async (userID, date) => {
   try {
     const logs = await Log
-      .find({ user: userID })
+      .find({ user: userID, date: date })
       .populate({ path: 'user', select: 'firstName lastName' })
     return logs
   } catch (err) {

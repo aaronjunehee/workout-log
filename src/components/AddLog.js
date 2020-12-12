@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-// import Calendar from 'react-calendar';
-// import 'react-calendar/dist/Calendar.css';
 
 const newExercise = { name: '', sets: '', reps: '' }
 
 function AddLog(props) {
   const [exercises, setExercises] = useState([{...newExercise}]);
-  // const [date, setDate] = useState(new Date());
 
   const addExerciseRow = (e) => {
     const exerciseToAdd = [...exercises];
@@ -41,7 +38,6 @@ function AddLog(props) {
 
   return (
     <form onSubmit={saveExercises}>
-      {/* <Calendar onChange={setDate} value={date} /> */}
       {exercises.map((exercise, i) => {
         return (
           <fieldset onChange={(e) => updateExerciseField(e, i)} key={i}>

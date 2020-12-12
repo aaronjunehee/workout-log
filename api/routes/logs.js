@@ -8,7 +8,8 @@ router.use(verifyToken)
 router.route('/')
 
   .get(async (req, res) => {
-    const logs = await getLogsByUser(req.user.id)
+    const { date } = req.query
+    const logs = await getLogsByUser(req.user.id, date)
     res.json(logs)
   })
 
