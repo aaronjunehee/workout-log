@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import WorkoutLog from './components/WorkoutLog';
+import Login from './components/Login'
 import SignUp from './components/SignUp'
 import './styles/App.scss';
 
@@ -47,12 +48,17 @@ function App() {
           <Switch>
               <Route
                 exact
+                path='/login'
+                render={props => user ? <Redirect to='/' /> : <Login getUser={getUser} {...props} />}
+              />
+              <Route
+                exact
                 path='/signup'
                 render={props => user ? <Redirect to='/' /> : <SignUp getUser={getUser} updateUser={setUser} {...props} />}
               />
               <Route
                 path='/'
-                render={props => !user ? <Redirect to='/signup' /> : <WorkoutLog {...props} />}
+                render={props => !user ? <Redirect to='/login' /> : <WorkoutLog {...props} />}
               />
           </Switch>
         </Router>
