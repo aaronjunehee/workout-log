@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function SignUp(props) {
   const [email, setEmail] = useState('')
@@ -52,26 +53,21 @@ function SignUp(props) {
   }
 
   return (
-    <form>
+    <form className="signup">
+      <div className="close-button">
+        <Link to="/login"><i class="fas fa-times"></i></Link>
+      </div>
       <fieldset>
-        <label htmlFor="firstName">
-          First Name
+        <label htmlFor="firstName">First Name</label>
         <input type="text" name="firstName" id="firstName" defaultValue={firstName} onChange={(e) => setFirstName(e.target.value)} />
-        </label>
-        <label htmlFor="lastName">
-          Last Name
+        <label htmlFor="lastName">Last Name</label>
         <input type="text" name="lastName" id="lastName" defaultValue={lastName} onChange={(e) => setLastName(e.target.value)} />
-        </label>
-        <label htmlFor="email">
-          Email
+        <label htmlFor="email">Email</label>
         <input type="text" name="email" id="email" defaultValue={email} onChange={(e) => setEmail(e.target.value)} />
-        </label>
-        <label htmlFor="password">
-          Password
+        <label htmlFor="password">Password</label>
         <input type="text" name="password" id="password" defaultValue={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
       </fieldset>
-      <button onClick={handleSubmit}>Submit</button>
+      <button onClick={handleSubmit}>Sign Up</button>
     </form>
   );
 }
