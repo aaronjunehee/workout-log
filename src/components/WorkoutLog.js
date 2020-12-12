@@ -21,31 +21,50 @@ function WorkoutLog(props) {
     }
   }, [date])
 
+  const createDateHeader = () => {
+    const month = date.toLocaleString("default", { month: "long" })
+    const dayOfMonth = date.getDate()
+    const dayOfWeek = date.toLocaleString("default", { weekday: "long" })
+
+    return `${dayOfWeek}, ${month} ${dayOfMonth}`
+  }
+
   useEffect(() => {
     refresh()
   }, [refresh])
 
   return (
-    <div className="logs">
-      <Calendar onChange={setDate} value={date} />
-      <button onClick={(e)=>{props.logOut(e)}}>Log Out</button>
-      {logs.length > 0 && logs.map((log) => {
-        return (
-          <div key={uuid.v4()}>
-            <h2>{log.date}</h2>
-            {log.exercises.map((exercise) => {
-              return (
-                <ul key={uuid.v4()}>
-                  <li>{exercise.name}</li>
-                  <li>Sets: {exercise.reps}</li>
-                  <li>Reps: {exercise.sets}</li>
-                </ul>
-              )
-            })}
-          </div>
-        )
-      })}
-      <AddLog onAdd={refresh} date={date} />
+    <div className="workout-log">
+      <section className="calendar">
+        <Calendar onChange={setDate} value={date} />
+      </section>
+      <section className="logs">
+        <header>
+          <h2>{ createDateHeader() }</h2>
+        </header>
+        {logs.length > 0 && logs.map((log) => {
+          return (
+            <ul>
+              {log.exercises.map((exercise) => {
+                return (
+                  <li key={uuid.v4()} className="log">
+                    <ul class="exercise">
+                      <li className="name"><h3>{exercise.name}</h3></li>
+                      <li className="reps">{`${exercise.reps} reps`}</li>
+                      <li className="sets">{`${exercise.sets} sets`}</li>
+                      <li className="weight"><div>65lbs</div></li>
+                    </ul>
+                  </li>
+                )
+              })}
+            </ul>
+          )
+        })}
+      </section>
+      <section className="addLog">
+        <button onClick={(e) => { props.logOut(e) }}>Log Out</button>
+        <AddLog onAdd={refresh} date={date} />
+      </section>
     </div>
   );
 }

@@ -1,0 +1,91 @@
+.workout-log {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 1200px; 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  row-gap: 1rem;
+  column-gap: 1rem;
+  section.calendar {
+    grid-column-start: 1; 
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+  section.logs {
+    grid-column-start: 2; 
+    grid-column-end: 3;
+    grid-row-start: 1; 
+    grid-row-end: 3;
+    max-height: 600px;
+    overflow: auto;
+  }
+  section.addLog {
+    grid-column-start: 1; 
+    grid-row-start: 2; 
+    grid-row-end: 3; 
+  }
+  section.logs,
+  section.addLog {
+    border-radius: 12px;
+    box-shadow: 3px 3px 7px 1px #88888838;
+    background: white;
+    padding: 15px;
+  }
+  section.logs {
+    header {
+      font-size: 1.6rem;
+      color: rgb(38, 38, 38);
+      padding: 10px 0 20px;
+    }
+    .log {
+      background: #baaafe;
+      border-radius: 8px;
+      margin-bottom: 5px;
+      &:nth-of-type(2n) {
+        background-color: #ffc2d7;
+        .weight {
+          background-color: #fd77b6;
+        }
+      }
+    }
+  }
+
+  .exercise {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto;
+    color: white;
+    .name {
+      font-size: 1.8rem;
+      grid-column-start: 1; 
+      grid-column-end: 2;
+      grid-row-start: 1;
+      grid-row-end: 2;
+      padding: 15px 0 0 15px;
+      font-weight: bold;
+    }
+    .reps, .sets {
+      font-size: 1.5rem;
+      padding: 0 0 0 15px;
+    }
+    .sets {
+      padding: 0 0 15px 15px;
+    }
+    .weight {
+      grid-column-start: 2; 
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 4;
+      text-align: right;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 15px;
+      background: #a089ff;
+      border-radius: 0 8px 8px 0;
+      font-weight: bold;
+    }
+  }
+}

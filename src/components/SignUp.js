@@ -55,7 +55,7 @@ function SignUp(props) {
   return (
     <form className="signup">
       <div className="close-button">
-        <Link to="/login"><i class="fas fa-times"></i></Link>
+        <Link to="/login"><i className="fas fa-times"></i></Link>
       </div>
       <fieldset>
         <label htmlFor="firstName">First Name</label>
