@@ -21,6 +21,7 @@ function WorkoutLog(props) {
 
   return (
     <div className="logs">
+      <button onClick={(e)=>{props.logOut(e)}}>Log Out</button>
       {logs.length > 0 && logs.map((log) => {
         return (
           <div key={uuid.v4()}>

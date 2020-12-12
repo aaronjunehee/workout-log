@@ -38,12 +38,12 @@ function App() {
   }
 
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <h1>Workout Log</h1>
+    <div className='app'>
+      <header className='app-header'>
+        <h1>🏋️‍♂️ Workout Journal</h1>
+        <p>A simple app that helps you keep track of your training</p>
       </header>
       <main>
-        <button onClick={logOut}>Log Out</button>
         <Router>
           <Switch>
               <Route
@@ -58,7 +58,7 @@ function App() {
               />
               <Route
                 path='/'
-                render={props => !user ? <Redirect to='/login' /> : <WorkoutLog {...props} />}
+                render={props => !user ? <Redirect to='/login' /> : <WorkoutLog logOut={logOut} {...props} />}
               />
           </Switch>
         </Router>

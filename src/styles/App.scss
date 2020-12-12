@@ -1,5 +1,7 @@
 @import './partials/setup';
-@import './partials/test';
+@import './partials/mixins';
+@import './partials/global';
+@import './partials/app';
 
 .App {
   text-align: center;
