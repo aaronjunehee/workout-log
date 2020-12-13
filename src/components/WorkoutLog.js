@@ -17,6 +17,7 @@ function WorkoutLog(props) {
       }))
       const data = await response.json();
       setLogs(data)
+      setIsLogging(false)
     } catch (e) {
       console.log(e)
     }
@@ -37,6 +38,11 @@ function WorkoutLog(props) {
     return `(${logs[0].exercises.length})`
   }
 
+  const handleChange = (date) => {
+    setDate(date)
+    setIsLogging(false)
+  }
+
   useEffect(() => {
     refresh()
   }, [refresh])
@@ -44,14 +50,13 @@ function WorkoutLog(props) {
   return (
     <div className="workout-log">
       <section className="calendar">
-        <Calendar onChange={setDate} value={date} />
+        <Calendar onChange={(date) => {handleChange(date)}} value={date} />
       </section>
-      <section className="logs">
+      <section className={isLogging ? "logs height-auto" : "logs"}>
         <header>
           <h2>{ `${createDateHeader()} ${getNumOfExercises()}` }</h2>
         </header>
-        {logs.length > 0 && logs.map((log) => {
-          console.log(logs)
+        {logs.length <= 0 ? <div className="asleep"><p>zzzzzzzz</p><i className="fas fa-bed"></i></div> : logs.map((log) => {
           return (
             <ul>
               {log.exercises.map((exercise) => {
@@ -61,7 +66,7 @@ function WorkoutLog(props) {
                       <li className="name"><h3>{exercise.name}</h3></li>
                       <li className="reps">{`${exercise.reps} reps`}</li>
                       <li className="sets">{`${exercise.sets} sets`}</li>
-                      <li className="weight"><div>{`${exercise.weight} lbs`}</div></li>
+                      <li className="weight"><div>{`${exercise.weight}`}</div></li>
                     </ul>
                   </li>
                 )
@@ -71,9 +76,9 @@ function WorkoutLog(props) {
         })}
       </section>
       <section className="addLog">
-        {/* <button onClick={(e) => { props.logOut(e) }}>Log Out</button> */}
         {isLogging ? <AddLog onAdd={refresh} date={date} /> : <button onClick={() => { setIsLogging(!isLogging) }} className="log-workout-button">Log Workout</button>}
       </section>
+      <button onClick={(e) => { props.logOut(e) }} className="logout-button"><i className="fas fa-sign-out-alt"></i></button>
     </div>
   );
 }

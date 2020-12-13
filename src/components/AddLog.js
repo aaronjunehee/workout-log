@@ -32,36 +32,38 @@ function AddLog(props) {
     }
   };
   const addRow = e => {
-    e.preventDefault();
-    addExerciseRow();
+    e.preventDefault()
+    addExerciseRow()
   };
 
   return (
-    <form onSubmit={saveExercises}>
+    <form onSubmit={saveExercises} className="add-log">
       {exercises.map((exercise, i) => {
         return (
-          <fieldset onChange={(e) => updateExerciseField(e, i)} key={i}>
-            <label htmlFor="name">
-              Name:
-              <input type="text" name="name" id="name" defaultValue={exercise.name}/>
-            </label>
-            <label htmlFor="reps">
-              Sets:
-              <input type="text" name="reps" id="reps" defaultValue={exercise.reps}/>
-            </label>
-            <label htmlFor="sets">
-              Reps:
-              <input type="text" name="sets" id="sets" defaultValue={exercise.sets}/>
-            </label>
-            <label htmlFor="weight">
-              Weight:
+          <fieldset onChange={(e) => updateExerciseField(e, i)} key={i} className={exercises.length > 1 ? "container border-bottom" : 'container'}>
+            <div className="input">
+              <label htmlFor="name">Exercise</label>
+              <input type="text" name="name" id="name" defaultValue={exercise.name} />
+            </div>
+            <div className="input">
+              <label htmlFor="weight">Weight</label>
               <input type="text" name="weight" id="weight" defaultValue={exercise.weight} />
-            </label>
+            </div>
+            <div className="input">
+              <label htmlFor="reps">Sets</label>
+              <input type="text" name="reps" id="reps" defaultValue={exercise.reps}/>
+            </div>
+            <div className="input">
+              <label htmlFor="sets">Reps</label>
+              <input type="text" name="sets" id="sets" defaultValue={exercise.sets}/>
+            </div>
           </fieldset>
         )
       })}
-      <button onClick={addRow}>Add Row</button>
-      <input type="submit" value="Save" />
+      <div className="buttons">
+        <button onClick={addRow}>Add Row</button>
+        <input type="submit" value="Save" />
+      </div>
     </form>
   )
 }

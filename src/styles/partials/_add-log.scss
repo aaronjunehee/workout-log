@@ -1,0 +1,49 @@
+.add-log {
+  padding: 10px;
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    &:not(:last-of-type) {
+      &.border-bottom {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #d0d0d0;
+      }
+    }
+    &:not(:first-of-type) {
+      padding-top: 10px;
+    }
+  }
+  .input {
+    display: flex;
+    flex-direction: column;
+    &:nth-of-type(1) {
+      flex: 0 1 100%;
+    }
+    width: 32%;
+    label {
+      margin: 5px 0;
+      font-weight: bold;
+      font-size: 1.7rem;
+      color: #363636;
+    }
+    input {
+      margin-bottom: 5px;
+    }
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0 0;
+    button, input {
+      flex: 0 1 49%;
+      border: none;
+      color: white;
+      font-weight: bold;
+      padding: 5px 0 3px;
+      background: #48c774;
+      cursor: pointer;
+    }
+  }
+}
