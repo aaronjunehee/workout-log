@@ -38,9 +38,13 @@ router.route('/login')
 
     try {
       const user = await findUserByEmail(email)
+      if (!user) {
+        res.status(401).json({ message: 'The username and password you entered did not match our records. Please double-check and try again.' });
+        return
+      }
       const isMatch = await user.comparePasswords(password)
       if (!isMatch) {
-        res.status(400).json({ message: 'password and email do not match' })
+        res.status(400).json({ message: 'The username and password you entered did not match our records. Please double-check and try again.' })
         return
       }
       const token = createToken({ id: user._id })

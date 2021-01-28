@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 function Login(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -25,18 +26,18 @@ function Login(props) {
       const params = { email, password }
       const response = await fetch('/api/users/login', createHeader(params))
       const data = await response.json()
-      console.log(data)
       if (!response.ok) {
         throw new Error(data.message)
       }
       props.getUser()
     } catch (err) {
-      console.log(err)
+      setError(err.message)
     }
   }
 
   return (
     <form className="login">
+      {error !== '' && <p>{error}</p>}
       <fieldset>
         <label htmlFor="email">Email</label>
         <input type="text" name="email" id="email" defaultValue={email} onChange={(e) => setEmail(e.target.value)} />

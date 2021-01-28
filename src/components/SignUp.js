@@ -27,13 +27,13 @@ function SignUp(props) {
       const params = { email, password, firstName, lastName}
       const response = await fetch('/api/users', createHeader(params))
       const data = await response.json()
-      // what are we using data.id for?
       if (!response.ok) {
         throw new Error(data.message)
       }
       logInUser()
     } catch(err) {
       console.log(err)
+      props.updateUser(undefined)
     }
   }
 
