@@ -49,16 +49,16 @@ function App() {
               <Route
                 exact
                 path='/login'
-                render={props => user ? <Redirect to='/' /> : <Login getUser={getUser} {...props} />}
+                render={() => user ? <Redirect to='/' /> : <Login getUser={getUser} />}
               />
               <Route
                 exact
                 path='/signup'
-                render={props => user ? <Redirect to='/' /> : <SignUp getUser={getUser} updateUser={setUser} {...props} />}
+                render={() => user ? <Redirect to='/' /> : <SignUp getUser={getUser} updateUser={setUser} />}
               />
               <Route
                 path='/'
-                render={props => !user ? <Redirect to='/login' /> : <WorkoutLog logOut={logOut} {...props} />}
+                render={() => !user ? <Redirect to='/login' /> : <WorkoutLog logOut={logOut} />}
               />
           </Switch>
         </Router>
