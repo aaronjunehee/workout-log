@@ -25,7 +25,7 @@ function SignUp(props) {
 
   const signUpUser = async () => {
     try {
-      const params = { email, password, firstName, lastName}
+      const params = { firstName, lastName, email, password }
       const response = await fetch('/api/users', createHeader(params))
       const data = await response.json()
       if (!response.ok) {

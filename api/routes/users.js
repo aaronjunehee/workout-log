@@ -7,11 +7,19 @@ const router = express.Router()
 
 router.route('/')
   .post(async (req, res) => {
-    const { email, password, firstName, lastName } = req.body
+    const { firstName, lastName, email, password } = req.body
+
+    function formatData (data) {
+      const spaceAdded = data.replace(/([A-Z])/g, ' $1')
+      const capitalized = spaceAdded.charAt(0).toUpperCase() + spaceAdded.slice(1)
+
+      return capitalized
+    }
 
     for (const data in req.body) {
       if (!req.body[data] || req.body[data] === ' ') {
-        res.status(400).json({ message: `${data} must be provided` })
+        const dataString = formatData(data)
+        res.status(400).json({ message: `${dataString} must be provided` })
         return
       }
     }
