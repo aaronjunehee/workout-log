@@ -6,6 +6,7 @@ function SignUp(props) {
   const [password, setPassword] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
+  const [error, setError] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -32,7 +33,7 @@ function SignUp(props) {
       }
       logInUser()
     } catch(err) {
-      console.log(err)
+      setError(err.message)
       props.updateUser(undefined)
     }
   }
@@ -57,6 +58,7 @@ function SignUp(props) {
       <div className="close-button">
         <Link to="/login"><i className="fas fa-times"></i></Link>
       </div>
+      {error !== '' && <p>{error}</p>}
       <fieldset>
         <label htmlFor="firstName">First Name</label>
         <input type="text" name="firstName" id="firstName" defaultValue={firstName} onChange={(e) => setFirstName(e.target.value)} />
