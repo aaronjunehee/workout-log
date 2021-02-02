@@ -1,7 +1,20 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}))
+
 function Login(props) {
+  const classes = useStyles()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -38,11 +51,23 @@ function Login(props) {
   return (
     <form className="login">
       {error !== '' && <p>{error}</p>}
-      <fieldset>
-        <label htmlFor="email">Email</label>
-        <input type="text" name="email" id="email" defaultValue={email} onChange={(e) => setEmail(e.target.value)} />
-        <label htmlFor="password">Password</label>
-        <input type="text" name="password" id="password" defaultValue={password} onChange={(e) => setPassword(e.target.value)} />
+      <fieldset className={classes.root}>
+        <TextField 
+          variant="outlined" 
+          label="Email Address" 
+          id="email"
+          name="email"
+          defaultValue={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <TextField
+          variant="outlined"
+          label="Password"
+          id="password"
+          name="password"
+          defaultValue={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
       </fieldset>
       <button onClick={handleSubmit}>Log In</button>
       <div className="signup-button">
