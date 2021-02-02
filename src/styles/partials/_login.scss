@@ -10,25 +10,19 @@ form.login {
     width: 95%;
   }
 
-  fieldset {
-    display: flex;
-    flex-direction: column;
-  }
+  // fieldset {
+  //   font-size: 100% !important;
+  // }
 
-  label {
-    font-size: 1.8rem;
-    font-weight: 500;
-    padding: 5px 0;
-    &:not(:first-of-type) {
-      margin-top: 15px;
-    }
-  }
+//   label {
+// font-size:15px;
+//   }
 
-  input {
-    padding: 14px 16px;
-    border-radius: 6px;
-    border: 1px solid #dddfe2;
-  }
+  // input {
+  //   padding: 14px 16px;
+  //   border-radius: 6px;
+  //   border: 1px solid #dddfe2;
+  // }
 
   button,
   a {
