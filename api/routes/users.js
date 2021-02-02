@@ -39,7 +39,8 @@ router.route('/login')
 
     for (const data in req.body) {
       if (!req.body[data] || req.body[data] === ' ') {
-        res.status(400).json({ message: `${data} must be provided` })
+        const dataString = data.charAt(0).toUpperCase() + data.slice(1)
+        res.status(400).json({ message: `${dataString} must be provided` })
         return
       }
     }
