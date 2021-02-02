@@ -75,6 +75,7 @@ function Login(props) {
           autoFocus
           defaultValue={password}
           className={classes.textField}
+          type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
       </fieldset>
