@@ -6,11 +6,12 @@ import TextField from '@material-ui/core/TextField'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
+    display: 'flex',
+    flexWrap: 'wrap',
   },
+  textField: {
+    marginBottom: theme.spacing(2)
+  }
 }))
 
 function Login(props) {
@@ -53,19 +54,27 @@ function Login(props) {
       {error !== '' && <p>{error}</p>}
       <fieldset className={classes.root}>
         <TextField 
-          variant="outlined" 
-          label="Email Address" 
+          variant="outlined"
+          fullWidth
+          label="Email" 
           id="email"
           name="email"
+          autoComplete="email"
+          autoFocus
           defaultValue={email}
+          className={classes.textField}
           onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
           variant="outlined"
+          fullWidth
           label="Password"
           id="password"
           name="password"
+          autoComplete="current-password"
+          autoFocus
           defaultValue={password}
+          className={classes.textField}
           onChange={(e) => setPassword(e.target.value)}
         />
       </fieldset>
