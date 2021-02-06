@@ -47,7 +47,7 @@ router.route('/login')
 
     try {
       const user = await findUserByEmail(email)
-      const isMatch = await user.comparePasswords(password)
+      const isMatch = user && await user.comparePasswords(password)
       if (!user || !isMatch) {
         res.status(401).json({ message: 'The email and password you entered did not match our records. Please double-check and try again.' });
         return
