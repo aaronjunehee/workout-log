@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     marginBottom: theme.spacing(2)
+  },
+  submit: {
+    margin: theme.spacing()
   }
 }))
 
@@ -79,10 +83,10 @@ function Login(props) {
           onChange={(e) => setPassword(e.target.value)}
         />
       </fieldset>
-      <button onClick={handleSubmit}>Log In</button>
-      <div className="signup-button">
+      <Button className="submit" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>Log In</Button>
+      <div className="signup-button-container">
         <Link to="/signup">
-          Create New Account
+          <Button className="signup" variant="contained" size="large"> Create New Account </Button>
         </Link>
       </div>
     </form>
