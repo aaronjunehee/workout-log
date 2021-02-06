@@ -86,7 +86,7 @@ function Login(props) {
         />
       </fieldset>
       <Button className="submit" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>Log In</Button>
-      {error.includes('password', 'email') && <p className="error">{error}</p>}
+      {error.includes('information') && <p className="error">{error}</p>}
       <div className="signup-button-container">
         <Link to="/signup">
           <Button className="signup" variant="contained" size="large"> Create New Account </Button>
