@@ -76,7 +76,6 @@ function Login(props) {
           id="password"
           name="password"
           autoComplete="current-password"
-          autoFocus
           defaultValue={password}
           className={classes.textField}
           type="password"
