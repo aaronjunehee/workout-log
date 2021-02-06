@@ -55,7 +55,6 @@ function Login(props) {
 
   return (
     <form className="login">
-      {error !== '' && <p>{error}</p>}
       <fieldset className={classes.root}>
         <TextField 
           variant="outlined"
@@ -68,6 +67,8 @@ function Login(props) {
           defaultValue={email}
           className={classes.textField}
           onChange={(e) => setEmail(e.target.value)}
+          error={error.includes('Email')}
+          helperText={error.includes('Email') ? error : ''}
         />
         <TextField
           variant="outlined"
@@ -80,9 +81,12 @@ function Login(props) {
           className={classes.textField}
           type="password"
           onChange={(e) => setPassword(e.target.value)}
+          error={error.includes('Password')}
+          helperText={error.includes('Password') ? error : ''}
         />
       </fieldset>
       <Button className="submit" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>Log In</Button>
+      {error.includes('password', 'email') && <p className="error">{error}</p>}
       <div className="signup-button-container">
         <Link to="/signup">
           <Button className="signup" variant="contained" size="large"> Create New Account </Button>
