@@ -43,13 +43,25 @@ router.route('/login')
         res.status(400).json({ message: `${dataString} must be provided` })
         return
       }
+      if  (req.body && req.body['email']) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        const isValid = emailRegex.test(email)
+        if (!isValid) {
+          res.status(400).json({ message: 'Please enter a valid email address' })
+          return
+        }
+      }
     }
 
     try {
       const user = await findUserByEmail(email)
-      const isMatch = user && await user.comparePasswords(password)
-      if (!user || !isMatch) {
-        res.status(401).json({ message: 'The information you entered doesn\'t match our records. Please double-check and try again.' });
+      if (!user) {
+        res.status(401).json({ message: 'The email you\'ve entered doesn\'t match our records. Please double-check and try again.' });
+        return
+      }
+      const isMatch = await user.comparePasswords(password)
+      if (!isMatch) {
+        res.status(401).json({ message: 'Sorry, your password was incorrect. Please double-check and try again.' });
         return
       }
       const token = createToken({ id: user._id })
@@ -57,7 +69,6 @@ router.route('/login')
       res.status(200).send({})
 
     } catch(err) {
-      console.log(err)
       res.status(500).json({ message: 'internal server error' })
     }
 
