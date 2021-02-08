@@ -1,7 +1,26 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import IconButton from '@material-ui/core/IconButton';
+import Visibility from '@material-ui/icons/Visibility'
+import VisibilityOff from '@material-ui/icons/VisibilityOff'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginBottom: theme.spacing(2)
+  }
+}))
+
 function SignUp(props) {
+  const classes = useStyles()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [firstName, setFirstName] = useState('')
@@ -59,15 +78,56 @@ function SignUp(props) {
         <Link to="/login"><i className="fas fa-times"></i></Link>
       </div>
       {error !== '' && <p>{error}</p>}
-      <fieldset>
-        <label htmlFor="firstName">First Name</label>
-        <input type="text" name="firstName" id="firstName" defaultValue={firstName} onChange={(e) => setFirstName(e.target.value)} />
-        <label htmlFor="lastName">Last Name</label>
-        <input type="text" name="lastName" id="lastName" defaultValue={lastName} onChange={(e) => setLastName(e.target.value)} />
-        <label htmlFor="email">Email</label>
-        <input type="text" name="email" id="email" defaultValue={email} onChange={(e) => setEmail(e.target.value)} />
-        <label htmlFor="password">Password</label>
-        <input type="text" name="password" id="password" defaultValue={password} onChange={(e) => setPassword(e.target.value)} />
+      <fieldset className={classes.root}>
+        <TextField
+          variant="outlined"
+          fullWidth
+          label="First Name"
+          id="firstName"
+          name="firstName"
+          autoFocus
+          defaultValue={firstName}
+          className={classes.textField}
+          onChange={(e) => setFirstName(e.target.value)}
+          error={error.toLowerCase().includes('first name')}
+          helperText={error.toLowerCase().includes('first name') ? error : ''}
+        />
+        <TextField
+          variant="outlined"
+          fullWidth
+          label="Last Name"
+          id="lastName"
+          name="lastName"
+          defaultValue={lastName}
+          className={classes.textField}
+          onChange={(e) => setLastName(e.target.value)}
+          error={error.toLowerCase().includes('last name')}
+          helperText={error.toLowerCase().includes('last name') ? error : ''}
+        />
+        <TextField
+          variant="outlined"
+          fullWidth
+          label="Email"
+          id="email"
+          name="email"
+          defaultValue={email}
+          className={classes.textField}
+          onChange={(e) => setEmail(e.target.value)}
+          error={error.toLowerCase().includes('email')}
+          helperText={error.toLowerCase().includes('email') ? error : ''}
+        />
+        <TextField
+          variant="outlined"
+          fullWidth
+          label="Password"
+          id="password"
+          name="password"
+          defaultValue={password}
+          className={classes.textField}
+          onChange={(e) => setPassword(e.target.value)}
+          error={error.toLowerCase().includes('password')}
+          helperText={error.toLowerCase().includes('password') ? error : ''}
+        />
       </fieldset>
       <button onClick={handleSubmit}>Sign Up</button>
     </form>
