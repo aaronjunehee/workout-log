@@ -67,8 +67,8 @@ function Login(props) {
           defaultValue={email}
           className={classes.textField}
           onChange={(e) => setEmail(e.target.value)}
-          error={error.includes('Email')}
-          helperText={error.includes('Email') ? error : ''}
+          error={error.toLowerCase().includes('email')}
+          helperText={error.toLowerCase().includes('email') ? error : ''}
         />
         <TextField
           variant="outlined"
@@ -81,12 +81,12 @@ function Login(props) {
           className={classes.textField}
           type="password"
           onChange={(e) => setPassword(e.target.value)}
-          error={error.includes('Password')}
-          helperText={error.includes('Password') ? error : ''}
+          error={error.toLowerCase().includes('password')}
+          helperText={error.toLowerCase().includes('password') ? error : ''}
         />
       </fieldset>
       <Button className="submit" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>Log In</Button>
-      {error.includes('information') && <p className="error">{error}</p>}
+      {/* {error.includes('information') && <p className="error">{error}</p>} */}
       <div className="signup-button-container">
         <Link to="/signup">
           <Button className="signup" variant="contained" size="large"> Create New Account </Button>
