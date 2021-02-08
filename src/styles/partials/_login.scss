@@ -10,21 +10,8 @@ form.login {
     width: 95%;
   }
 
-  // fieldset {
-  //   font-size: 100% !important;
-  // }
-
-//   label {
-// font-size:15px;
-//   }
-
-  // input {
-  //   padding: 14px 16px;
-  //   border-radius: 6px;
-  //   border: 1px solid #dddfe2;
-  // }
-
-  button {
+  button.submit,
+  button.signup {
     color: white;
     font-weight: bold;
     text-transform: capitalize;
