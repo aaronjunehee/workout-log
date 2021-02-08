@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import IconButton from '@material-ui/core/IconButton';
+import Visibility from '@material-ui/icons/Visibility'
+import VisibilityOff from '@material-ui/icons/VisibilityOff'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +27,10 @@ function Login(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+
+  const handleClickShowPassword = () => setShowPassword(!showPassword)
+  const handleMouseDownPassword = () => setShowPassword(!showPassword)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -79,10 +87,23 @@ function Login(props) {
           autoComplete="current-password"
           defaultValue={password}
           className={classes.textField}
-          type="password"
+          type={showPassword ? "text" : "password"}
           onChange={(e) => setPassword(e.target.value)}
           error={error.toLowerCase().includes('password')}
           helperText={error.toLowerCase().includes('password') ? error : ''}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            )
+          }}
         />
       </fieldset>
       <Button className="submit" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>Log In</Button>
