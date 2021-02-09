@@ -26,6 +26,10 @@ function SignUp(props) {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [error, setError] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+
+  const handleClickShowPassword = () => setShowPassword(!showPassword)
+  const handleMouseDownPassword = () => setShowPassword(!showPassword)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -74,10 +78,10 @@ function SignUp(props) {
 
   return (
     <form className="signup">
-      <div className="close-button">
+      {/* <div className="close-button">
         <Link to="/login"><i className="fas fa-times"></i></Link>
-      </div>
-      {error !== '' && <p>{error}</p>}
+      </div> */}
+      {/* {error !== '' && <p>{error}</p>} */}
       <fieldset className={classes.root}>
         <TextField
           variant="outlined"
@@ -124,12 +128,26 @@ function SignUp(props) {
           name="password"
           defaultValue={password}
           className={classes.textField}
+          type={showPassword ? "text" : "password"}
           onChange={(e) => setPassword(e.target.value)}
           error={error.toLowerCase().includes('password')}
           helperText={error.toLowerCase().includes('password') ? error : ''}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            )
+          }}
         />
       </fieldset>
-      <Button className="signup" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>Sign Up</Button>
+      <Button className="signup primary" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>Sign Up</Button>
     </form>
   );
 }
