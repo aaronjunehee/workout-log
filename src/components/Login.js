@@ -5,9 +5,10 @@ import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import InputAdornment from '@material-ui/core/InputAdornment'
-import IconButton from '@material-ui/core/IconButton';
+import IconButton from '@material-ui/core/IconButton'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     marginBottom: theme.spacing(2)
+  },
+  loader: {
+    color: 'white'
   }
 }))
 
@@ -24,6 +28,7 @@ function Login(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
 
   const handleClickShowPassword = () => setShowPassword(!showPassword)
@@ -31,6 +36,7 @@ function Login(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setLoading(true)
     logInUser()
   }
 
@@ -53,8 +59,10 @@ function Login(props) {
         throw new Error(data.message)
       }
       props.getUser()
+      setLoading(false)
     } catch (err) {
       setError(err.message)
+      setLoading(false)
     }
   }
 
@@ -103,11 +111,16 @@ function Login(props) {
           }}
         />
       </fieldset>
-      <Button className="login primary" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>Log In</Button>
+      <Button className="login primary" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>
+        {!loading && 'Log In'}
+        {loading && <CircularProgress size={30} className={classes.loader} />}
+      </Button>
       {/* {error.includes('information') && <p className="error">{error}</p>} */}
       <div className="signup-button-container">
         <Link to="/signup">
-          <Button className="signup secondary" variant="contained" size="large"> Create New Account </Button>
+          <Button className="signup secondary" variant="contained" size="large">
+            Create New Account
+          </Button>
         </Link>
       </div>
     </form>
