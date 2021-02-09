@@ -5,12 +5,15 @@ const { createToken } = require('../tokens/tokenService')
 
 const router = express.Router()
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
 const formatData = function(data) {
   const spaceAdded = data.replace(/([A-Z])/g, ' $1')
   const capitalized = spaceAdded.charAt(0).toUpperCase() + spaceAdded.toLowerCase().slice(1)
   return capitalized
+}
+
+const validateEmail = function(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
 }
 
 router.route('/')
@@ -22,6 +25,13 @@ router.route('/')
         const dataString = formatData(data)
         res.status(400).json({ message: `${dataString} must be provided` })
         return
+      }
+      if (req.body && req.body['email']) {
+        const isValid = validateEmail(email)
+        if (!isValid) {
+          res.status(400).json({ message: 'Please enter a valid email address' })
+          return
+        }
       }
     }
 
@@ -45,7 +55,7 @@ router.route('/login')
         return
       }
       if  (req.body && req.body['email']) {
-        const isValid = emailRegex.test(email)
+        const isValid = validateEmail(email)
         if (!isValid) {
           res.status(400).json({ message: 'Please enter a valid email address' })
           return
