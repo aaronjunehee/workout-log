@@ -5,16 +5,17 @@ const { createToken } = require('../tokens/tokenService')
 
 const router = express.Router()
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+const formatData = function(data) {
+  const spaceAdded = data.replace(/([A-Z])/g, ' $1')
+  const capitalized = spaceAdded.charAt(0).toUpperCase() + spaceAdded.toLowerCase().slice(1)
+  return capitalized
+}
+
 router.route('/')
   .post(async (req, res) => {
     const { firstName, lastName, email, password } = req.body
-
-    function formatData (data) {
-      const spaceAdded = data.replace(/([A-Z])/g, ' $1')
-      const capitalized = spaceAdded.charAt(0).toUpperCase() + spaceAdded.slice(1)
-
-      return capitalized
-    }
 
     for (const data in req.body) {
       if (!req.body[data] || req.body[data] === ' ') {
@@ -44,7 +45,6 @@ router.route('/login')
         return
       }
       if  (req.body && req.body['email']) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         const isValid = emailRegex.test(email)
         if (!isValid) {
           res.status(400).json({ message: 'Please enter a valid email address' })
@@ -93,4 +93,5 @@ router.use(verifyToken).route('/me')
       console.log(err)
     }
   })
+  
 module.exports = router
