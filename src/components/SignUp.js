@@ -8,6 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     marginBottom: theme.spacing(2)
+  },
+  loader: {
+    color: 'white'
   }
 }))
 
@@ -26,6 +30,7 @@ function SignUp(props) {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
 
   const handleClickShowPassword = () => setShowPassword(!showPassword)
@@ -33,6 +38,7 @@ function SignUp(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setLoading(true)
     signUpUser()
   }
 
@@ -58,6 +64,7 @@ function SignUp(props) {
     } catch(err) {
       setError(err.message)
       props.updateUser(undefined)
+      setLoading(false)
     }
   }
 
@@ -71,16 +78,15 @@ function SignUp(props) {
         throw new Error(data.message)
       }
       props.getUser()
+      setLoading(false)
     } catch(err) {
       console.log(err)
+      setLoading(false)
     }
   }
 
   return (
     <form className="signup">
-      {/* <div className="close-button">
-        <Link to="/login"><i className="fas fa-times"></i></Link>
-      </div> */}
       {/* {error !== '' && <p>{error}</p>} */}
       <fieldset className={classes.root}>
         <TextField
@@ -90,7 +96,6 @@ function SignUp(props) {
           id="firstName"
           name="firstName"
           autoFocus
-          defaultValue={firstName}
           className={classes.textField}
           onChange={(e) => setFirstName(e.target.value)}
           error={error.toLowerCase().includes('first name')}
@@ -102,7 +107,6 @@ function SignUp(props) {
           label="Last Name"
           id="lastName"
           name="lastName"
-          defaultValue={lastName}
           className={classes.textField}
           onChange={(e) => setLastName(e.target.value)}
           error={error.toLowerCase().includes('last name')}
@@ -114,7 +118,6 @@ function SignUp(props) {
           label="Email"
           id="email"
           name="email"
-          defaultValue={email}
           className={classes.textField}
           onChange={(e) => setEmail(e.target.value)}
           error={error.toLowerCase().includes('email')}
@@ -126,7 +129,6 @@ function SignUp(props) {
           label="Password"
           id="password"
           name="password"
-          defaultValue={password}
           className={classes.textField}
           type={showPassword ? "text" : "password"}
           onChange={(e) => setPassword(e.target.value)}
@@ -147,7 +149,13 @@ function SignUp(props) {
           }}
         />
       </fieldset>
-      <Button className="signup primary" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>Sign Up</Button>
+      <Button className="signup primary" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>
+        {!loading && 'Sign Up'}
+        {loading && <CircularProgress size={30} className={classes.loader} />}
+      </Button>
+      <div className="login-button-container">
+        <p>Have an account? <Link to="/login">Log in</Link></p>
+      </div>
     </form>
   );
 }
