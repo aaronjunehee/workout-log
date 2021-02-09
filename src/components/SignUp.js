@@ -129,7 +129,7 @@ function SignUp(props) {
           helperText={error.toLowerCase().includes('password') ? error : ''}
         />
       </fieldset>
-      <button onClick={handleSubmit}>Sign Up</button>
+      <Button className="signup" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>Sign Up</Button>
     </form>
   );
 }
