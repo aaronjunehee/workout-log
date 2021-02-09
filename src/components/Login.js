@@ -103,11 +103,11 @@ function Login(props) {
           }}
         />
       </fieldset>
-      <Button className="submit" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>Log In</Button>
+      <Button className="login primary" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>Log In</Button>
       {/* {error.includes('information') && <p className="error">{error}</p>} */}
       <div className="signup-button-container">
         <Link to="/signup">
-          <Button className="signup" variant="contained" size="large"> Create New Account </Button>
+          <Button className="signup secondary" variant="contained" size="large"> Create New Account </Button>
         </Link>
       </div>
     </form>

@@ -48,3 +48,24 @@ p#email-helper-text {
 a {
   text-decoration: none;
 }
+
+button.primary {
+  background-color: rgb(114, 177, 244);
+  color: white;
+  font-weight: bold;
+  text-transform: capitalize;
+  &:hover {
+    background-color: darken(rgb(114, 177, 244), 5%);
+  }
+}
+
+button.secondary {
+  background-color: #48c774;
+  color: white;
+  font-weight: bold;
+  text-transform: capitalize;
+  max-width: 250px;
+  &:hover {
+    background-color: darken(#48c774, 5%);
+  }
+}

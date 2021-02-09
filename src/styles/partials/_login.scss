@@ -10,22 +10,21 @@ form.login {
     width: 95%;
   }
 
-  button.submit,
-  button.signup {
+  button.primary {
+    background-color: rgb(114, 177, 244);
     color: white;
     font-weight: bold;
     text-transform: capitalize;
-  }
-
-  button.submit {
-    background-color: rgb(114, 177, 244);
     &:hover {
       background-color: darken(rgb(114, 177, 244), 5%);
     }
   }
 
-  button.signup {
+  button.secondary {
     background-color: #48c774;
+    color: white;
+    font-weight: bold;
+    text-transform: capitalize;
     max-width: 250px;
     &:hover {
       background-color: darken(#48c774, 5%);
