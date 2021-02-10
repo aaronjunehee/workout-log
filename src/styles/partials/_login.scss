@@ -1,34 +1,48 @@
-form.login {
+
+.login-wrapper {
+  height: 100%;
+  width: 90%;
+  max-width: 1200px;
   margin: 0 auto;
-  width: 60%;
-  max-width: 500px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: red;
+}
+
+header,
+form {
+  flex: 0 0 50%;
+}
+header {
+  background: blue;
+}
+form {
+  background: purple;
+}
+
+.login-header {
+  text-align: left;
+  padding: 60px 0;
+  h1 {
+    font-size: 3.5rem;
+    letter-spacing: 1.5px;
+  }
+  p {
+    font-size: 1.5rem;
+    padding: 15px 0;
+    font-weight: 300;
+  }
+}
+
+form.login {
+  max-width: 400px; 
   background-color: white;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 3px 3px 7px 1px #88888838;
   @media (max-width: 500px) {
     width: 95%;
-  }
-
-  button.primary {
-    background-color: rgb(114, 177, 244);
-    color: white;
-    font-weight: bold;
-    text-transform: capitalize;
-    &:hover {
-      background-color: darken(rgb(114, 177, 244), 5%);
-    }
-  }
-
-  button.secondary {
-    background-color: #48c774;
-    color: white;
-    font-weight: bold;
-    text-transform: capitalize;
-    max-width: 250px;
-    &:hover {
-      background-color: darken(#48c774, 5%);
-    }
   }
 
   .signup-button-container {
