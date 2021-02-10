@@ -67,63 +67,69 @@ function Login(props) {
   }
 
   return (
-    <form className="login">
-      <fieldset className={classes.root}>
-        <TextField 
-          variant="outlined"
-          fullWidth
-          label="Email" 
-          id="email"
-          name="email"
-          autoComplete="email"
-          autoFocus
-          defaultValue={email}
-          className={classes.textField}
-          onChange={(e) => setEmail(e.target.value)}
-          error={error.toLowerCase().includes('email')}
-          helperText={error.toLowerCase().includes('email') ? error : ''}
-        />
-        <TextField
-          variant="outlined"
-          fullWidth
-          label="Password"
-          id="password"
-          name="password"
-          autoComplete="current-password"
-          defaultValue={password}
-          className={classes.textField}
-          type={showPassword ? "text" : "password"}
-          onChange={(e) => setPassword(e.target.value)}
-          error={error.toLowerCase().includes('password')}
-          helperText={error.toLowerCase().includes('password') ? error : ''}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            )
-          }}
-        />
-      </fieldset>
-      <Button className="login primary" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>
-        {!loading && 'Log In'}
-        {loading && <CircularProgress size={30} className={classes.loader} />}
-      </Button>
-      {/* {error.includes('information') && <p className="error">{error}</p>} */}
-      <div className="signup-button-container">
-        <Link to="/signup">
-          <Button className="signup secondary" variant="contained" size="large">
-            Create New Account
-          </Button>
-        </Link>
-      </div>
-    </form>
+    <section className="login-wrapper">
+      <header className='login-header'>
+        <h1>Fitness App 🏋️‍♂️ </h1>
+        <p>A simple app that helps you keep track of your training</p>
+      </header>
+      <form className="login">
+        <fieldset className={classes.root}>
+          <TextField 
+            variant="outlined"
+            fullWidth
+            label="Email" 
+            id="email"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            defaultValue={email}
+            className={classes.textField}
+            onChange={(e) => setEmail(e.target.value)}
+            error={error.toLowerCase().includes('email')}
+            helperText={error.toLowerCase().includes('email') ? error : ''}
+          />
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="Password"
+            id="password"
+            name="password"
+            autoComplete="current-password"
+            defaultValue={password}
+            className={classes.textField}
+            type={showPassword ? "text" : "password"}
+            onChange={(e) => setPassword(e.target.value)}
+            error={error.toLowerCase().includes('password')}
+            helperText={error.toLowerCase().includes('password') ? error : ''}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
+          />
+        </fieldset>
+        <Button className="login primary" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>
+          {!loading && 'Log In'}
+          {loading && <CircularProgress size={30} className={classes.loader} />}
+        </Button>
+        {/* {error.includes('information') && <p className="error">{error}</p>} */}
+        <div className="signup-button-container">
+          <Link to="/signup">
+            <Button className="signup secondary" variant="contained" size="large">
+              Create New Account
+            </Button>
+          </Link>
+        </div>
+      </form>
+    </section>
   );
 }
 export default Login;
