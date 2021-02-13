@@ -86,12 +86,12 @@ function SignUp(props) {
   }
 
   return (
-    <section>
-      <header className='login-header'>
+    <section className="signup-wrapper">
+      <header className='signup-header'>
         <h1>FitTrack 🏋️‍♂️</h1>
         <p>A simple app that helps <span className="line-break">you keep track of your training</span></p>
       </header>
-      <form className="signup">
+      <form className="signup-form">
         <fieldset className={classes.root}>
           <TextField
             variant="outlined"
