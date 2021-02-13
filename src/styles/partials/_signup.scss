@@ -1,39 +1,83 @@
-form.signup {
+.signup-wrapper {
+  height: 100%;
+  width: 90%;
+  max-width: 1200px;
   margin: 0 auto;
-  width: 60%;
-  max-width: 500px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  header {
+    flex: 0 1 auto;
+  }
+  form {
+    flex: 0 0 400px;
+  }
+}
+
+.signup-header {
+  text-align: left;
+  padding-right: 90px;
+  h1 {
+    font-size: 3rem;
+    letter-spacing: 1.5px;
+  }
+  p {
+    font-size: 1.5rem;
+    padding: 15px 0;
+    font-weight: 300;
+  }
+  .line-break {
+    display: block;
+  }
+}
+
+.signup-form {
   background-color: white;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 3px 3px 7px 1px #88888838;
-  @media (max-width: 500px) {
-    width: 95%;
-  }
+}
 
-  .close-button {
-    display: flex;
-    justify-content: flex-end;
-    a {
-      color: black;
+.login-button-container {
+  margin: 20px 0 0;
+  padding: 30px 0 10px;
+  border-top: 1px solid rgba(87, 87, 87, 0.29);
+  display: flex;
+  justify-content: center;
+  p {
+    font-family: $tertiaryFont;
+  }
+  a {
+    font-weight: 600;
+    color: rgb(46, 136, 232);
+  }
+}
+
+@media (max-width: 907px) {
+  .signup-wrapper {
+    justify-content: space-between;
+  }
+  .signup-header {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 840px) {
+  .signup-wrapper {
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    header {
+      flex: 0 1 auto;
+      padding: 50px 0 30px;
     }
-    a:hover {
-      color: #48c774;
+    form {
+      flex: 0 0 auto;
+      max-width: 400px;
     }
   }
-
-  .login-button-container {
-    margin: 20px 0 0;
-    padding: 30px 0 10px;
-    border-top: 1px solid rgba(87, 87, 87, 0.29);
-    display: flex;
-    justify-content: center;
-    p {
-      font-family: $tertiaryFont;
-    }
-    a {
-      font-weight: 600;
-      color: rgb(46, 136, 232);
-    }
+  .signup-header {
+    text-align: center;
+    padding-right: 90px;
   }
-
 }
