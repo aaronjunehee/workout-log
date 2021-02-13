@@ -7,25 +7,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: red;
-}
-
-header,
-form {
-  flex: 0 0 50%;
-}
-header {
-  background: blue;
-}
-form {
-  background: purple;
+  header {
+    flex: 0 1 auto;
+  }
+  form {
+    flex: 0 0 400px;
+  }
 }
 
 .login-header {
   text-align: left;
-  padding: 60px 0;
+  padding-right: 90px;
   h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     letter-spacing: 1.5px;
   }
   p {
@@ -33,23 +27,50 @@ form {
     padding: 15px 0;
     font-weight: 300;
   }
+  .line-break {
+    display: block;
+  }
 }
 
-form.login {
-  max-width: 400px; 
+.login-form {
   background-color: white;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 3px 3px 7px 1px #88888838;
-  @media (max-width: 500px) {
-    width: 95%;
-  }
+}
 
-  .signup-button-container {
-    margin: 20px 0 0;
-    padding: 20px 0 0;
-    border-top: 1px solid rgba(87, 87, 87, 0.29);
-    display: flex;
-    justify-content: center;
+.signup-button-container {
+  margin: 20px 0 0;
+  padding: 20px 0 0;
+  border-top: 1px solid rgba(87, 87, 87, 0.29);
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 907px) {
+  .login-wrapper {
+    justify-content: space-between;
+  }
+  .login-header {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 840px) {
+  .login-wrapper {
+    flex-direction: column;
+    justify-content: flex-start;
+    header {
+      flex: 0 1 auto;
+      padding: 50px 0;
+    }
+    form {
+      flex: 0 0 auto;
+      max-width: 400px;
+    }
+  }
+  .login-header {
+    text-align: center;
+    padding-right: 90px;
   }
 }
