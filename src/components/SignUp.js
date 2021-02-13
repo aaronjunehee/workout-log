@@ -86,77 +86,82 @@ function SignUp(props) {
   }
 
   return (
-    <form className="signup">
-      {/* {error !== '' && <p>{error}</p>} */}
-      <fieldset className={classes.root}>
-        <TextField
-          variant="outlined"
-          fullWidth
-          label="First Name"
-          id="firstName"
-          name="firstName"
-          autoFocus
-          className={classes.textField}
-          onChange={(e) => setFirstName(e.target.value)}
-          error={error.toLowerCase().includes('first name')}
-          helperText={error.toLowerCase().includes('first name') ? error : ''}
-        />
-        <TextField
-          variant="outlined"
-          fullWidth
-          label="Last Name"
-          id="lastName"
-          name="lastName"
-          className={classes.textField}
-          onChange={(e) => setLastName(e.target.value)}
-          error={error.toLowerCase().includes('last name')}
-          helperText={error.toLowerCase().includes('last name') ? error : ''}
-        />
-        <TextField
-          variant="outlined"
-          fullWidth
-          label="Email"
-          id="email"
-          name="email"
-          className={classes.textField}
-          onChange={(e) => setEmail(e.target.value)}
-          error={error.toLowerCase().includes('email')}
-          helperText={error.toLowerCase().includes('email') ? error : ''}
-        />
-        <TextField
-          variant="outlined"
-          fullWidth
-          label="Password"
-          id="password"
-          name="password"
-          className={classes.textField}
-          type={showPassword ? "text" : "password"}
-          onChange={(e) => setPassword(e.target.value)}
-          error={error.toLowerCase().includes('password')}
-          helperText={error.toLowerCase().includes('password') ? error : ''}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            )
-          }}
-        />
-      </fieldset>
-      <Button className="signup primary" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>
-        {!loading && 'Sign Up'}
-        {loading && <CircularProgress size={30} className={classes.loader} />}
-      </Button>
-      <div className="login-button-container">
-        <p>Have an account? <Link to="/login">Log in</Link></p>
-      </div>
-    </form>
+    <section>
+      <header className='login-header'>
+        <h1>FitTrack 🏋️‍♂️</h1>
+        <p>A simple app that helps <span className="line-break">you keep track of your training</span></p>
+      </header>
+      <form className="signup">
+        <fieldset className={classes.root}>
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="First Name"
+            id="firstName"
+            name="firstName"
+            autoFocus
+            className={classes.textField}
+            onChange={(e) => setFirstName(e.target.value)}
+            error={error.toLowerCase().includes('first name')}
+            helperText={error.toLowerCase().includes('first name') ? error : ''}
+          />
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="Last Name"
+            id="lastName"
+            name="lastName"
+            className={classes.textField}
+            onChange={(e) => setLastName(e.target.value)}
+            error={error.toLowerCase().includes('last name')}
+            helperText={error.toLowerCase().includes('last name') ? error : ''}
+          />
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="Email"
+            id="email"
+            name="email"
+            className={classes.textField}
+            onChange={(e) => setEmail(e.target.value)}
+            error={error.toLowerCase().includes('email')}
+            helperText={error.toLowerCase().includes('email') ? error : ''}
+          />
+          <TextField
+            variant="outlined"
+            fullWidth
+            label="Password"
+            id="password"
+            name="password"
+            className={classes.textField}
+            type={showPassword ? "text" : "password"}
+            onChange={(e) => setPassword(e.target.value)}
+            error={error.toLowerCase().includes('password')}
+            helperText={error.toLowerCase().includes('password') ? error : ''}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
+          />
+        </fieldset>
+        <Button className="signup primary" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>
+          {!loading && 'Sign Up'}
+          {loading && <CircularProgress size={30} className={classes.loader} />}
+        </Button>
+        <div className="login-button-container">
+          <p>Have an account? <Link to="/login">Log in</Link></p>
+        </div>
+      </form>
+    </section>
   );
 }
 export default SignUp;
