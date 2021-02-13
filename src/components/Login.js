@@ -69,10 +69,10 @@ function Login(props) {
   return (
     <section className="login-wrapper">
       <header className='login-header'>
-        <h1>Fitness App 🏋️‍♂️ </h1>
-        <p>A simple app that helps you keep track of your training</p>
+        <h1>FitTrack 🏋️‍♂️</h1>
+        <p>A simple app that helps <span className="line-break">you keep track of your training</span></p>
       </header>
-      <form className="login">
+      <form className="login-form">
         <fieldset className={classes.root}>
           <TextField 
             variant="outlined"
