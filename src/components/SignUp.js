@@ -73,7 +73,6 @@ function SignUp(props) {
       const params = { email, password }
       const response = await fetch('/api/users/login', createHeader(params))
       const data = await response.json()
-      console.log(data)
       if (!response.ok) {
         throw new Error(data.message)
       }
