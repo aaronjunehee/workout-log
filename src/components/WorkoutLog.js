@@ -49,6 +49,9 @@ function WorkoutLog(props) {
 
   return (
     <div className="workout-log">
+      <header>
+        <nav></nav>
+      </header>
       <section className="calendar">
         <Calendar onChange={(date) => {handleChange(date)}} value={date} />
       </section>
