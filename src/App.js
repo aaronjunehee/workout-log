@@ -39,10 +39,6 @@ function App() {
 
   return (
     <div className='app'>
-      {/* <header className='app-header'>
-        <h1>🏋️‍♂️ Workout Journal</h1>
-        <p>A simple app that helps you keep track of your training</p>
-      </header> */}
       <main>
         <Router>
           <Switch>
