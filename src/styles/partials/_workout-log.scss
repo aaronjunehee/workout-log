@@ -128,3 +128,44 @@
     cursor: pointer;
   }
 }
+
+.dashboard {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 200px 400px 3fr;
+  grid-template-rows: 1fr;
+  justify-items: stretch;
+  align-items: stretch;
+
+  .navigation {
+    background: linear-gradient(45deg,#354052,#28313D);
+    .logo {
+      width: 100%;
+      height: 180px;
+      background: darken(rgb(114, 177, 244), 10%);
+      margin-top: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      color: white;
+    }
+  }
+
+  .controller {
+    background: white;
+    overflow: auto;
+    .box {
+      padding: 40px 30px;
+      border-bottom: 1px solid rgba(77, 77, 77, 0.304);
+      h2 {
+        font-weight: 200;
+        padding-bottom: 30px;
+      }
+    }
+  }
+
+
+
+}

@@ -48,12 +48,22 @@ function WorkoutLog(props) {
   }, [refresh])
 
   return (
-    <div className="workout-log">
-      <header>
-        <nav></nav>
-      </header>
-      <section className="calendar">
-        <Calendar onChange={(date) => {handleChange(date)}} value={date} />
+    <div className="dashboard">
+      <nav className="navigation">
+        <div className="logo">
+          <h1>FitTack</h1>
+        </div>
+      </nav>
+      <section className="controller">
+        <div className="box">
+          <h2>Select the date you want to track</h2>
+          <Calendar onChange={(date) => {handleChange(date)}} value={date} />
+        </div>
+        <div className="box">
+          <h2>Add an exercise</h2>
+          <AddLog onAdd={refresh} date={date} />
+          <button onClick={(e) => { props.logOut(e) }} className="logout-button"><i className="fas fa-sign-out-alt"></i></button>
+        </div>
       </section>
       <section className={isLogging ? "logs height-auto" : "logs"}>
         <header>
@@ -78,10 +88,6 @@ function WorkoutLog(props) {
           )
         })}
       </section>
-      <section className="addLog">
-        {isLogging ? <AddLog onAdd={refresh} date={date} /> : <button onClick={() => { setIsLogging(!isLogging) }} className="log-workout-button">Log Workout</button>}
-      </section>
-      <button onClick={(e) => { props.logOut(e) }} className="logout-button"><i className="fas fa-sign-out-alt"></i></button>
     </div>
   );
 }
