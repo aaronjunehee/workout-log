@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import WorkoutLog from './components/WorkoutLog';
+import Dashboard from './components/WorkoutTracker/Dashboard';
 import Login from './components/Registration/Login'
 import SignUp from './components/Registration/SignUp'
 import './styles/App.scss';
@@ -54,7 +54,7 @@ function App() {
               />
               <Route
                 path='/'
-                render={() => !user ? <Redirect to='/login' /> : <WorkoutLog logOut={logOut} />}
+                render={() => !user ? <Redirect to='/login' /> : <Dashboard logOut={logOut} />}
               />
           </Switch>
         </Router>

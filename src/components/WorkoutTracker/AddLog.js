@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
 const newExercise = { name: '', sets: '', reps: '', weight: '' }
 
 function AddLog(props) {
-  const [exercises, setExercises] = useState([{...newExercise}]);
+  const [exercises, setExercises] = useState([{...newExercise}])
 
   const addExerciseRow = (e) => {
-    const exerciseToAdd = [...exercises];
-    exerciseToAdd.push(Object.assign({}, newExercise));
-    setExercises(exerciseToAdd);
+    const exerciseToAdd = [...exercises]
+    exerciseToAdd.push(Object.assign({}, newExercise))
+    setExercises(exerciseToAdd)
   }
   const updateExerciseField = (e, i) => {
-    const exerciseState = [...exercises];
-    exerciseState[i][e.target.name] = e.target.value;
-    setExercises(exerciseState);
+    const exerciseState = [...exercises]
+    exerciseState[i][e.target.name] = e.target.value
+    setExercises(exerciseState)
   }
 
   const saveExercises = async e => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       const response = await fetch('/api/logs', {
         method: 'POST',
