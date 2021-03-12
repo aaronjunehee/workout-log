@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-const newExercise = { name: '', sets: '', reps: '', weight: '' }
+const newExercise = { name: '', sets: 0, reps: 0, weight: 0 }
 
 function AddLog(props) {
   const [exercises, setExercises] = useState([{...newExercise}])
@@ -47,15 +47,15 @@ function AddLog(props) {
             </div>
             <div className="input">
               <label htmlFor="weight">Weight</label>
-              <input type="text" name="weight" id="weight" defaultValue={exercise.weight} />
+              <input type="number" name="weight" id="weight" defaultValue={exercise.weight} />
             </div>
             <div className="input">
               <label htmlFor="reps">Sets</label>
-              <input type="text" name="reps" id="reps" defaultValue={exercise.reps}/>
+              <input type="number" name="reps" id="reps" defaultValue={exercise.reps}/>
             </div>
             <div className="input">
               <label htmlFor="sets">Reps</label>
-              <input type="text" name="sets" id="sets" defaultValue={exercise.sets}/>
+              <input type="number" name="sets" id="sets" defaultValue={exercise.sets}/>
             </div>
           </fieldset>
         )
