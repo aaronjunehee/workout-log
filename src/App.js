@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import WorkoutLog from './components/WorkoutLog';
-import Login from './components/Login'
-import SignUp from './components/SignUp'
+import Login from './components/Registration/Login'
+import SignUp from './components/Registration/SignUp'
 import './styles/App.scss';
 
 function App() {
