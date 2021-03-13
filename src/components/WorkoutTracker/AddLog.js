@@ -5,6 +5,7 @@ const newExercise = { name: '', sets: 0, reps: 0, weight: 0, unit: 'lbs' }
 
 function AddLog(props) {
   const [exercises, setExercises] = useState([{...newExercise}])
+  const [error, setError] = useState('')
 
   const addExerciseRow = (e) => {
     const exerciseToAdd = [...exercises]
@@ -15,12 +16,17 @@ function AddLog(props) {
     const exerciseState = [...exercises]
     exerciseState[i][e.target.name] = e.target.value
     setExercises(exerciseState)
+    setError('')
   }
 
   const saveExercises = async e => {
     e.preventDefault()
-    console.log(exercises)
+    
     try {
+      const isVerified = verifyExercises()
+      if (!isVerified) {
+        throw new Error('All fields must be filled in')
+      }
       const response = await fetch('/api/logs', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
@@ -29,14 +35,23 @@ function AddLog(props) {
       if (response.ok) {
         props.onAdd()
       }
-    } catch {
-      console.log('dksjdhfks')
+    } catch (error) {
+      setError(error.message)
     }
-  };
+  }
+
+  const verifyExercises = () => {
+    let isVerified = false
+    exercises.forEach(ex =>
+      isVerified = (ex.name !== '' && ex.weight > 0 && ex.sets > 0 && ex.reps > 0)
+    )
+    return isVerified
+  }
+
   const addRow = e => {
     e.preventDefault()
     addExerciseRow()
-  };
+  }
 
   return (
     <form className="add-log">
@@ -72,6 +87,7 @@ function AddLog(props) {
         <Button onClick={addRow} variant="contained">Add Row</Button>
         <Button onClick={saveExercises} variant="contained">Submit</Button>
       </div>
+      {error !== '' && <p className="error">{error}</p>}
     </form>
   )
 }
