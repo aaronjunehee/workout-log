@@ -30,7 +30,6 @@ function AddLog(props) {
 
   const saveExercises = async e => {
     e.preventDefault()
-    resetVars()
     try {
       const isVerified = verifyExercises()
       if (!isVerified) {
@@ -43,6 +42,7 @@ function AddLog(props) {
       })
       if (response.ok) {
         props.onAdd()
+        resetVars()
       }
     } catch (error) {
       setError(error.message)
