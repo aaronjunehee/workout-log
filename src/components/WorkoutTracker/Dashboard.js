@@ -1,6 +1,7 @@
 import React from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import Button from '@material-ui/core/Button'
 import { useEffect, useState, useCallback } from 'react';
 import AddLog from './AddLog';
 const uuid = require('uuid');
@@ -53,7 +54,7 @@ function WorkoutLog(props) {
         <div className="logo">
           <h1>FitTack</h1>
         </div>
-        <button onClick={(e) => { props.logOut(e) }} className="logout-button"><i className="fas fa-sign-out-alt"></i></button>
+        <Button onClick={(e) => { props.logOut(e) }} className="logout-button" variant="contained">Log Out</Button>
       </nav>
       <section className="controller">
         <div className="box">

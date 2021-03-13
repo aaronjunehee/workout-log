@@ -151,6 +151,15 @@
     h1 {
       color: white;
     }
+    .logout-button {
+      color: white;
+      background: #48c774;
+      text-transform: capitalize;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: block;
+      margin: 20px auto;
+    }
   }
 
   .controller {
