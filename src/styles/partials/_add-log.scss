@@ -1,48 +1,50 @@
 .add-log {
   .container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    &:not(:last-of-type) {
-      &.border-bottom {
-        padding-bottom: 10px;
-        border-bottom: 1px solid #d0d0d0;
-      }
-    }
-    &:not(:first-of-type) {
-      padding-top: 10px;
-    }
-  }
-  .input {
-    display: flex;
     flex-direction: column;
-    &:nth-of-type(1) {
-      flex: 0 1 100%;
-    }
-    width: 32%;
-    label {
-      margin: 5px 0;
-      font-weight: bold;
-      font-size: 1.7rem;
-      color: #363636;
-    }
-    input {
-      margin-bottom: 5px;
+  }
+  .container:not(:last-of-type) {
+    &.border-bottom {
+      border-bottom: 1px solid #dbdbdb;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
     }
   }
-  .buttons {
+  .input-container {
+    display: flex;
+    padding-bottom: 10px;
+  }
+  label {
+    font-weight: 200;
+    font-size: 1.1rem;
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+  }
+  input,
+  select {
+    border: 1px solid #dbdbdb;
+    height: 2rem;
+    width: 100%;
+  }
+  select {
+    width: 50px;
+    border-left: none;
+  }
+  .buttons-container {
     display: flex;
     justify-content: space-between;
-    padding: 5px 0 0;
-    button, input {
-      flex: 0 1 49%;
-      border: none;
-      color: white;
-      font-weight: bold;
-      padding: 5px 0 3px;
-      background: #48c774;
-      cursor: pointer;
-    }
+    padding-top: 15px;
+  }
+  button {
+    flex: 0 1 49%;
+    border: none;
+    color: white;
+    padding: 5px 0 3px;
+    background: #48c774;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
   }
 }

@@ -1,4 +1,6 @@
 import React, { useState } from "react"
+import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
 
 const newExercise = { name: '', sets: 0, reps: 0, weight: 0 }
 
@@ -37,32 +39,38 @@ function AddLog(props) {
   };
 
   return (
-    <form onSubmit={saveExercises} className="add-log">
+    <form className="add-log">
       {exercises.map((exercise, i) => {
         return (
           <fieldset onChange={(e) => updateExerciseField(e, i)} key={i} className={exercises.length > 1 ? "container border-bottom" : 'container'}>
-            <div className="input">
-              <label htmlFor="name">Exercise</label>
+            <div className="input-container">
+              <label htmlFor="name"><p>Name</p></label>
               <input type="text" name="name" id="name" defaultValue={exercise.name} />
             </div>
-            <div className="input">
-              <label htmlFor="weight">Weight</label>
+            <div className="input-container">
+              <label htmlFor="weight"><p>Weight</p></label>
               <input type="number" name="weight" id="weight" defaultValue={exercise.weight} />
+              <div className="select-container">
+                <select>
+                  <option value="lbs">lbs</option>
+                  <option value="kg">kg</option>
+                </select>
+              </div>
             </div>
-            <div className="input">
-              <label htmlFor="reps">Sets</label>
-              <input type="number" name="reps" id="reps" defaultValue={exercise.reps}/>
-            </div>
-            <div className="input">
-              <label htmlFor="sets">Reps</label>
+            <div className="input-container">
+              <label htmlFor="sets"><p>Sets</p></label>
               <input type="number" name="sets" id="sets" defaultValue={exercise.sets}/>
+            </div>
+            <div className="input-container">
+              <label htmlFor="reps"><p>Reps</p></label>
+              <input type="number" name="reps" id="reps" defaultValue={exercise.reps}/>
             </div>
           </fieldset>
         )
       })}
-      <div className="buttons">
-        <button onClick={addRow}>Add Row</button>
-        <input type="submit" value="Save" />
+      <div className="buttons-container">
+        <Button onClick={addRow} variant="contained">Add Row</Button>
+        <Button onSubmit={saveExercises} variant="contained">Submit</Button>
       </div>
     </form>
   )

@@ -1,133 +1,133 @@
-.workout-log {
-  margin: 0 auto;
-  width: 80%;
-  max-width: 1200px; 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr auto;
-  row-gap: 1rem;
-  column-gap: 1rem;
-  section.calendar {
-    grid-column-start: 1; 
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    max-height: 400px;
-  }
-  section.logs {
-    grid-column-start: 2; 
-    grid-column-end: 3;
-    grid-row-start: 1; 
-    grid-row-end: 3;
-    max-height: 450px;
-    overflow: auto;
-    &.height-auto {
-      max-height: 600px;
-    }
-  }
-  section.addLog {
-    grid-column-start: 1; 
-    grid-row-start: 2; 
-    grid-row-end: 3; 
-  }
-  section.logs,
-  section.addLog {
-    border-radius: 12px;
-    box-shadow: 3px 3px 7px 1px #88888838;
-    background: white;
-  }
-  section.logs {
-    padding: 15px;
-    header {
-      font-size: 1rem;
-      color: rgb(38, 38, 38);
-      padding: 10px 0 20px;
-    }
-    .log {
-      background: #baaafe;
-      border-radius: 8px;
-      margin-bottom: 5px;
-      &:nth-of-type(2n) {
-        background-color: #ffc2d7;
-        .weight {
-          background-color: #fd77b6;
-        }
-      }
-    }
-  }
+// .workout-log {
+//   margin: 0 auto;
+//   width: 80%;
+//   max-width: 1200px; 
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   grid-template-rows: 1fr auto;
+//   row-gap: 1rem;
+//   column-gap: 1rem;
+//   section.calendar {
+//     grid-column-start: 1; 
+//     grid-column-end: 2;
+//     grid-row-start: 1;
+//     grid-row-end: 2;
+//     max-height: 400px;
+//   }
+//   section.logs {
+//     grid-column-start: 2; 
+//     grid-column-end: 3;
+//     grid-row-start: 1; 
+//     grid-row-end: 3;
+//     max-height: 450px;
+//     overflow: auto;
+//     &.height-auto {
+//       max-height: 600px;
+//     }
+//   }
+//   section.addLog {
+//     grid-column-start: 1; 
+//     grid-row-start: 2; 
+//     grid-row-end: 3; 
+//   }
+//   section.logs,
+//   section.addLog {
+//     border-radius: 12px;
+//     box-shadow: 3px 3px 7px 1px #88888838;
+//     background: white;
+//   }
+//   section.logs {
+//     padding: 15px;
+//     header {
+//       font-size: 1rem;
+//       color: rgb(38, 38, 38);
+//       padding: 10px 0 20px;
+//     }
+//     .log {
+//       background: #baaafe;
+//       border-radius: 8px;
+//       margin-bottom: 5px;
+//       &:nth-of-type(2n) {
+//         background-color: #ffc2d7;
+//         .weight {
+//           background-color: #fd77b6;
+//         }
+//       }
+//     }
+//   }
 
-  .exercise {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto auto;
-    color: white;
-    .name {
-      font-size: 1.8rem;
-      grid-column-start: 1; 
-      grid-column-end: 2;
-      grid-row-start: 1;
-      grid-row-end: 2;
-      padding: 15px 0 0 15px;
-      font-weight: bold;
-    }
-    .reps, .sets {
-      font-size: 1.5rem;
-      padding: 0 0 0 15px;
-    }
-    .sets {
-      padding: 0 0 15px 15px;
-    }
-    .weight {
-      grid-column-start: 2; 
-      grid-column-end: 3;
-      grid-row-start: 1;
-      grid-row-end: 4;
-      text-align: right;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100px;
-      background: #a089ff;
-      border-radius: 0 8px 8px 0;
-      font-weight: bold;
-    }
-  }
-  .log-workout-button {
-    width: 100%;
-    padding: 12px 10px 8px;
-    background-color: #48c774;
-    border-radius: 8px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .asleep {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 50%;
-    color: rgb(208, 208, 208);
-    p {
-      font-size: 4rem;
-      font-weight: bold;
-    }
-    i {
-      font-size: 5rem;
-    }
-  }
-  .logout-button {
-    position: fixed;
-    bottom: 40px;
-    right: 60px;
-    background: #48c774;
-    padding: 20px;
-    border-radius: 50%;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-  }
-}
+//   .exercise {
+//     display: grid;
+//     grid-template-columns: 1fr auto;
+//     grid-template-rows: auto auto auto;
+//     color: white;
+//     .name {
+//       font-size: 1.8rem;
+//       grid-column-start: 1; 
+//       grid-column-end: 2;
+//       grid-row-start: 1;
+//       grid-row-end: 2;
+//       padding: 15px 0 0 15px;
+//       font-weight: bold;
+//     }
+//     .reps, .sets {
+//       font-size: 1.5rem;
+//       padding: 0 0 0 15px;
+//     }
+//     .sets {
+//       padding: 0 0 15px 15px;
+//     }
+//     .weight {
+//       grid-column-start: 2; 
+//       grid-column-end: 3;
+//       grid-row-start: 1;
+//       grid-row-end: 4;
+//       text-align: right;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       width: 100px;
+//       background: #a089ff;
+//       border-radius: 0 8px 8px 0;
+//       font-weight: bold;
+//     }
+//   }
+//   .log-workout-button {
+//     width: 100%;
+//     padding: 12px 10px 8px;
+//     background-color: #48c774;
+//     border-radius: 8px;
+//     color: white;
+//     font-weight: bold;
+//     cursor: pointer;
+//   }
+//   .asleep {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     height: 50%;
+//     color: rgb(208, 208, 208);
+//     p {
+//       font-size: 4rem;
+//       font-weight: bold;
+//     }
+//     i {
+//       font-size: 5rem;
+//     }
+//   }
+//   .logout-button {
+//     position: fixed;
+//     bottom: 40px;
+//     right: 60px;
+//     background: #48c774;
+//     padding: 20px;
+//     border-radius: 50%;
+//     color: white;
+//     font-size: 2rem;
+//     cursor: pointer;
+//   }
+// }
 
 .dashboard {
   display: grid;
@@ -158,10 +158,11 @@
     overflow: auto;
     .box {
       padding: 40px 30px;
-      border-bottom: 1px solid rgba(77, 77, 77, 0.304);
+      border-bottom: 1px solid #dbdbdb;
       h2 {
         font-weight: 200;
-        padding-bottom: 30px;
+        padding-bottom: 20px;
+        font-size: 1.4rem;
       }
     }
   }

@@ -53,6 +53,7 @@ function WorkoutLog(props) {
         <div className="logo">
           <h1>FitTack</h1>
         </div>
+        <button onClick={(e) => { props.logOut(e) }} className="logout-button"><i className="fas fa-sign-out-alt"></i></button>
       </nav>
       <section className="controller">
         <div className="box">
@@ -60,9 +61,8 @@ function WorkoutLog(props) {
           <Calendar onChange={(date) => {handleChange(date)}} value={date} />
         </div>
         <div className="box">
-          <h2>Add an exercise</h2>
+          <h2>Add exercise</h2>
           <AddLog onAdd={refresh} date={date} />
-          <button onClick={(e) => { props.logOut(e) }} className="logout-button"><i className="fas fa-sign-out-alt"></i></button>
         </div>
       </section>
       <section className={isLogging ? "logs height-auto" : "logs"}>
