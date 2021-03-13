@@ -7,11 +7,19 @@ function AddLog(props) {
   const [exercises, setExercises] = useState([{...newExercise}])
   const [error, setError] = useState('')
 
-  const addExerciseRow = (e) => {
+  const addExerciseRow = () => {
     const exerciseToAdd = [...exercises]
     exerciseToAdd.push(Object.assign({}, newExercise))
     setExercises(exerciseToAdd)
   }
+
+  const deleteExerciseRow = (i) => {
+    const exerciseState = [...exercises]
+    exerciseState.splice(i, 1)
+    setExercises(exerciseState)
+    setError('')
+  }
+
   const updateExerciseField = (e, i) => {
     const exerciseState = [...exercises]
     exerciseState[i][e.target.name] = e.target.value
@@ -21,7 +29,6 @@ function AddLog(props) {
 
   const saveExercises = async e => {
     e.preventDefault()
-    
     try {
       const isVerified = verifyExercises()
       if (!isVerified) {
@@ -53,11 +60,17 @@ function AddLog(props) {
     addExerciseRow()
   }
 
+  const deleteRow = (e, i) => {
+    e.preventDefault()
+    deleteExerciseRow(i)
+  }
+
   return (
     <form className="add-log">
       {exercises.map((exercise, i) => {
         return (
           <fieldset onChange={(e) => updateExerciseField(e, i)} key={i} className={exercises.length > 1 ? "container border-bottom" : 'container'}>
+            { i > 0 && <i onClick={(e) => deleteRow(e, i)} className="fas fa-times-circle"></i> }
             <div className="input-container">
               <label htmlFor="name"><p>Name</p></label>
               <input type="text" name="name" id="name" defaultValue={exercise.name} />

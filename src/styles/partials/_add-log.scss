@@ -2,12 +2,13 @@
   .container {
     display: flex;
     flex-direction: column;
+    position: relative;
   }
   .container:not(:last-of-type) {
     &.border-bottom {
       border-bottom: 1px solid #dbdbdb;
-      padding-bottom: 15px;
-      margin-bottom: 25px;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
     }
   }
   .input-container {
@@ -49,5 +50,13 @@
   }
   .error {
     padding-top: 10px;
+  }
+  .fa-times-circle {
+    position: absolute;
+    right: -10px;
+    top: -40px;
+    font-size: 1.5rem;
+    color: #ff3860;
+    background: white;
   }
 }
