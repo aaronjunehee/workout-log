@@ -4,7 +4,6 @@ import 'react-calendar/dist/Calendar.css';
 import Button from '@material-ui/core/Button'
 import { useEffect, useState, useCallback } from 'react';
 import AddLog from './AddLog';
-const uuid = require('uuid');
 
 function WorkoutLog(props) {
   const [logs, setLogs] = useState([])
@@ -49,12 +48,12 @@ function WorkoutLog(props) {
         </div>
       </section>
       <section className="user-logs">
-        {logs.length <= 0 ? <div className="no-logs"><p>zzzzzzzz</p><i className="fas fa-bed"></i></div> : logs.map((log) => {
+        {logs.length <= 0 ? <div className="no-logs"><p>zzzzzzzz</p><i className="fas fa-bed"></i></div> : logs.map((log, idx) => {
           return (
-            <ul className="user-logs-wrapper">
-              {log.exercises.map((exercise) => {
+            <ul key={`log-${idx}`} className="user-logs-wrapper">
+              {log.exercises.map((exercise, i) => {
                 return (
-                  <li key={uuid.v4()} className="user-log">
+                  <li key={`exercise-${i}`} className="user-log">
                     <ul className="user-log-container">
                       <li className="name"><h3>{exercise.name}</h3></li>
                       <li className="reps-and-sets">{`${exercise.reps} reps x ${exercise.sets} sets`}</li>
