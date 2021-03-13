@@ -183,6 +183,9 @@
   }
 
   // LOGGED EXERCISES
+  .user-logs {
+    overflow: auto;
+  }
   .user-logs,
   .user-logs-wrapper {
     height: 100%;

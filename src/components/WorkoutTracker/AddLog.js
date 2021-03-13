@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import Button from '@material-ui/core/Button'
 
 const newExercise = { name: '', sets: 0, reps: 0, weight: 0, unit: 'lbs' }
@@ -6,6 +6,7 @@ const newExercise = { name: '', sets: 0, reps: 0, weight: 0, unit: 'lbs' }
 function AddLog(props) {
   const [exercises, setExercises] = useState([{...newExercise}])
   const [error, setError] = useState('')
+  const formEl = useRef(null)
 
   const addExerciseRow = () => {
     const exerciseToAdd = [...exercises]
@@ -29,6 +30,7 @@ function AddLog(props) {
 
   const saveExercises = async e => {
     e.preventDefault()
+    resetVars()
     try {
       const isVerified = verifyExercises()
       if (!isVerified) {
@@ -55,6 +57,12 @@ function AddLog(props) {
     return isVerified
   }
 
+  const resetVars = () => {
+    setExercises([{ ...newExercise }])
+    formEl.current.reset()
+    setError('')
+  }
+
   const addRow = e => {
     e.preventDefault()
     addExerciseRow()
@@ -66,7 +74,7 @@ function AddLog(props) {
   }
 
   return (
-    <form className="add-log">
+    <form className="add-log" ref={formEl} onSubmit={saveExercises}>
       {exercises.map((exercise, i) => {
         return (
           <fieldset onChange={(e) => updateExerciseField(e, i)} key={i} className={exercises.length > 1 ? "container border-bottom" : 'container'}>
@@ -98,7 +106,7 @@ function AddLog(props) {
       })}
       <div className="buttons-container">
         <Button onClick={addRow} variant="contained">Add Row</Button>
-        <Button onClick={saveExercises} variant="contained">Submit</Button>
+        <Button variant="contained" type="submit">Submit</Button>
       </div>
       {error !== '' && <p className="error">{error}</p>}
     </form>
