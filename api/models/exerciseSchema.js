@@ -6,6 +6,7 @@ const exerciseSchema = new Schema({
   sets: { type: Number, required: true },
   reps: { type: Number, required: true },
   weight: { type: Number, required: true },
+  unit: { type: String, required: true },
 })
 
 module.exports = exerciseSchema

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Button from '@material-ui/core/Button'
 
-const newExercise = { name: '', sets: 0, reps: 0, weight: 0 }
+const newExercise = { name: '', sets: 0, reps: 0, weight: 0, unit: 'lbs' }
 
 function AddLog(props) {
   const [exercises, setExercises] = useState([{...newExercise}])
@@ -19,6 +19,7 @@ function AddLog(props) {
 
   const saveExercises = async e => {
     e.preventDefault()
+    console.log(exercises)
     try {
       const response = await fetch('/api/logs', {
         method: 'POST',
@@ -50,7 +51,7 @@ function AddLog(props) {
               <label htmlFor="weight"><p>Weight</p></label>
               <input type="number" name="weight" id="weight" defaultValue={exercise.weight} />
               <div className="select-container">
-                <select>
+                <select name="unit" id="unit" defaultValue={exercise.unit}>
                   <option value="lbs">lbs</option>
                   <option value="kg">kg</option>
                 </select>
@@ -69,9 +70,9 @@ function AddLog(props) {
       })}
       <div className="buttons-container">
         <Button onClick={addRow} variant="contained">Add Row</Button>
-        <Button onSubmit={saveExercises} variant="contained">Submit</Button>
+        <Button onClick={saveExercises} variant="contained">Submit</Button>
       </div>
     </form>
   )
 }
-export default AddLog;
+export default AddLog
