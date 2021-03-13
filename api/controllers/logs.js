@@ -42,3 +42,13 @@ exports.updateLog = async (db, { exercises }) => {
     throw err
   }
 }
+
+exports.deleteExerciseByID = async (db, deleteID) => {
+  try {
+    db.exercises.splice(deleteID, 1)
+    const updatedLog = await db.save()
+    return updatedLog
+  } catch (err) {
+    throw err
+  }
+}

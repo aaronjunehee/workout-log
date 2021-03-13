@@ -29,6 +29,25 @@ function WorkoutLog(props) {
     refresh()
   }, [refresh])
 
+  const deleteExercise = async (e, deleteID, i) => {
+    e.preventDefault()
+    try {
+      const params = { deleteID, date: date.toLocaleDateString() }
+      const response = await fetch('/api/logs?' + new URLSearchParams(params), {
+        method: 'DELETE',
+      })
+      const data = await response.json()
+      if (!response.ok) {
+        throw new Error(data.message)
+      }
+      const logsState = [...logs]
+      logsState[0].exercises.splice(i, 1)
+      setLogs(logsState)
+    } catch (error) {
+
+    }
+  }
+
   return (
     <div className="dashboard">
       <nav className="navigation">
@@ -58,6 +77,7 @@ function WorkoutLog(props) {
                       <li className="name"><h3>{exercise.name}</h3></li>
                       <li className="reps-and-sets">{`${exercise.reps} reps x ${exercise.sets} sets`}</li>
                       <li className="weight"><div>{`${exercise.weight} ${exercise.unit}`}</div></li>
+                      <li><i onClick={(e) => deleteExercise(e, exercise._id, i)} className="fas fa-times-circle delete-exercise"></i></li>
                     </ul>
                   </li>
                 )
