@@ -7,9 +7,8 @@ import AddLog from './AddLog';
 const uuid = require('uuid');
 
 function WorkoutLog(props) {
-  const [logs, setLogs] = useState([]);
-  const [date, setDate] = useState(new Date());
-  const [isLogging, setIsLogging] = useState(false);
+  const [logs, setLogs] = useState([])
+  const [date, setDate] = useState(new Date())
 
   const refresh = useCallback(async () => {
     try {
@@ -18,30 +17,13 @@ function WorkoutLog(props) {
       }))
       const data = await response.json();
       setLogs(data)
-      setIsLogging(false)
     } catch (e) {
       console.log(e)
     }
   }, [date])
 
-  const createDateHeader = () => {
-    const month = date.toLocaleString("default", { month: "long" })
-    const dayOfMonth = date.getDate()
-    const dayOfWeek = date.toLocaleString("default", { weekday: "long" })
-
-    return `${dayOfWeek}, ${month} ${dayOfMonth}`
-  }
-
-  const getNumOfExercises = () => {
-    if (logs.length === 0) {
-      return ''
-    }
-    return `(${logs[0].exercises.length})`
-  }
-
   const handleChange = (date) => {
     setDate(date)
-    setIsLogging(false)
   }
 
   useEffect(() => {
@@ -66,21 +48,17 @@ function WorkoutLog(props) {
           <AddLog onAdd={refresh} date={date} />
         </div>
       </section>
-      <section className={isLogging ? "logs height-auto" : "logs"}>
-        <header>
-          <h2>{ `${createDateHeader()} ${getNumOfExercises()}` }</h2>
-        </header>
-        {logs.length <= 0 ? <div className="asleep"><p>zzzzzzzz</p><i className="fas fa-bed"></i></div> : logs.map((log) => {
+      <section className="user-logs">
+        {logs.length <= 0 ? <div className="no-logs"><p>zzzzzzzz</p><i className="fas fa-bed"></i></div> : logs.map((log) => {
           return (
-            <ul>
+            <ul className="user-logs-wrapper">
               {log.exercises.map((exercise) => {
                 return (
-                  <li key={uuid.v4()} className="log">
-                    <ul className="exercise">
+                  <li key={uuid.v4()} className="user-log">
+                    <ul className="user-log-container">
                       <li className="name"><h3>{exercise.name}</h3></li>
-                      <li className="reps">{`${exercise.reps} reps`}</li>
-                      <li className="sets">{`${exercise.sets} sets`}</li>
-                      <li className="weight"><div>{`${exercise.weight}`}</div></li>
+                      <li className="reps-and-sets">{`${exercise.reps} reps x ${exercise.sets} sets`}</li>
+                      <li className="weight"><div>{`${exercise.weight} ${exercise.unit}`}</div></li>
                     </ul>
                   </li>
                 )
