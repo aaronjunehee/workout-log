@@ -152,8 +152,7 @@ function SignUp(props) {
           />
         </fieldset>
         <Button className="signup primary" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>
-          {!loading && 'Sign Up'}
-          {loading && <CircularProgress size={30} className={classes.loader} />}
+          {loading ? <CircularProgress size={30} className={classes.loader} /> : 'Sign Up'}
         </Button>
         <div className="login-button-container">
           <p>Have an account? <Link to="/login">Log in</Link></p>

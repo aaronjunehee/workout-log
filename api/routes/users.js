@@ -54,7 +54,7 @@ router.route('/login')
         res.status(400).json({ message: `${dataString} must be provided` })
         return
       }
-      if  (req.body && req.body['email']) {
+      if (req.body && req.body['email']) {
         const isValid = validateEmail(email)
         if (!isValid) {
           res.status(400).json({ message: 'Please enter a valid email address' })

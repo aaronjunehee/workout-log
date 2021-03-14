@@ -116,10 +116,8 @@ function Login(props) {
           />
         </fieldset>
         <Button className="login primary" variant="contained" fullWidth type="submit" size="large" onClick={handleSubmit}>
-          {!loading && 'Log In'}
-          {loading && <CircularProgress size={30} className={classes.loader} />}
+          {loading ? <CircularProgress size={30} className={classes.loader} /> : 'Log In'}
         </Button>
-        {/* {error.includes('information') && <p className="error">{error}</p>} */}
         <div className="signup-button-container">
           <Link to="/signup">
             <Button className="signup secondary" variant="contained" size="large">
