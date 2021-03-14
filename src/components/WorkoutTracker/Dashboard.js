@@ -9,7 +9,7 @@ function WorkoutLog(props) {
   const [logs, setLogs] = useState([])
   const [date, setDate] = useState(new Date())
 
-  const refresh = useCallback(async () => {
+  const getLog = useCallback(async () => {
     try {
       const response = await fetch('/api/logs?' + new URLSearchParams({
         date: date.toLocaleDateString()
@@ -26,8 +26,8 @@ function WorkoutLog(props) {
   }
 
   useEffect(() => {
-    refresh()
-  }, [refresh])
+    getLog()
+  }, [getLog])
 
   const deleteExercise = async (e, deleteID, i) => {
     e.preventDefault()
@@ -63,7 +63,7 @@ function WorkoutLog(props) {
         </div>
         <div className="box">
           <h2>Add exercise</h2>
-          <AddLog onAdd={refresh} date={date} />
+          <AddLog onAdd={getLog} date={date} />
         </div>
       </section>
       <section className="user-logs">
