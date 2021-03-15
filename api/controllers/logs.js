@@ -4,7 +4,7 @@ exports.getLogByDate = async (userID, date) => {
   try {
     const log = await Log
       .findOne({ user: userID, date: date })
-    return log
+    return log || {}
   } catch (err) {
     throw err
   }

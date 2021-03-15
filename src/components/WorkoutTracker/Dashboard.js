@@ -14,7 +14,7 @@ function WorkoutLog(props) {
       const response = await fetch('/api/logs?' + new URLSearchParams({
         date: date.toLocaleDateString()
       }))
-      const data = await response.json();
+      const data = await response.json()
       setLog(data)
     } catch (e) {
       console.log(e)
