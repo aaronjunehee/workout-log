@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef } from 'react'
 import Button from '@material-ui/core/Button'
 
 const newExercise = { name: '', sets: 0, reps: 0, weight: 0, unit: 'lbs' }
@@ -37,7 +37,7 @@ function AddLog(props) {
       }
       const response = await fetch('/api/logs', {
         method: 'POST',
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ date: props.date.toLocaleDateString(), exercises }),
       })
       if (response.ok) {
@@ -77,7 +77,7 @@ function AddLog(props) {
     <form className="add-log" ref={formEl} onSubmit={saveExercises}>
       {exercises.map((exercise, i) => {
         return (
-          <fieldset onChange={(e) => updateExerciseField(e, i)} key={i} className={exercises.length > 1 ? "container border-bottom" : 'container'}>
+          <fieldset onChange={(e) => updateExerciseField(e, i)} key={i} className={exercises.length > 1 ? 'container border-bottom' : 'container'}>
             { i > 0 && <i onClick={(e) => deleteRow(e, i)} className="fas fa-times-circle"></i> }
             <div className="input-container">
               <label htmlFor="name"><p>Name</p></label>
