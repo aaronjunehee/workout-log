@@ -6,7 +6,7 @@ import { useEffect, useState, useCallback } from 'react';
 import AddLog from './AddLog';
 
 function WorkoutLog(props) {
-  const [logs, setLogs] = useState([])
+  const [log, setLog] = useState({})
   const [date, setDate] = useState(new Date())
 
   const getLog = useCallback(async () => {
@@ -15,7 +15,7 @@ function WorkoutLog(props) {
         date: date.toLocaleDateString()
       }))
       const data = await response.json();
-      setLogs(data)
+      setLog(data)
     } catch (e) {
       console.log(e)
     }
@@ -40,9 +40,9 @@ function WorkoutLog(props) {
       if (!response.ok) {
         throw new Error(data.message)
       }
-      const logsState = [...logs]
-      logsState[0].exercises.splice(i, 1)
-      setLogs(logsState)
+      const logState = {...log}
+      logState.exercises.splice(i, 1)
+      setLog(logState)
     } catch (error) {
 
     }
@@ -67,24 +67,22 @@ function WorkoutLog(props) {
         </div>
       </section>
       <section className="user-logs">
-        {logs.length <= 0 ? <div className="no-logs"><p>zzzzzzzz</p><i className="fas fa-bed"></i></div> : logs.map((log, idx) => {
-          return (
-            <ul key={`log-${idx}`} className="user-logs-wrapper">
-              {log.exercises.map((exercise, i) => {
-                return (
-                  <li key={`exercise-${i}`} className="user-log">
-                    <ul className="user-log-container">
-                      <li className="name"><h3>{exercise.name}</h3></li>
-                      <li className="reps-and-sets">{`${exercise.reps} reps x ${exercise.sets} sets`}</li>
-                      <li className="weight"><div>{`${exercise.weight} ${exercise.unit}`}</div></li>
-                      <li><i onClick={(e) => deleteExercise(e, exercise._id, i)} className="fas fa-times-circle delete-exercise"></i></li>
-                    </ul>
-                  </li>
-                )
-              })}
-            </ul>
-          )
-        })}
+        { Object.keys(log).length === 0 ? <div className="no-logs"><p>zzzzzzzz</p><i className="fas fa-bed"></i></div> :
+          <ul className="user-logs-wrapper">
+            { log.exercises.map((exercise, i) => {
+              return (
+                <li key={`exercise-${i}`} className="user-log">
+                  <ul className="user-log-container">
+                    <li className="name"><h3>{exercise.name}</h3></li>
+                    <li className="reps-and-sets">{`${exercise.reps} reps x ${exercise.sets} sets`}</li>
+                    <li className="weight"><div>{`${exercise.weight} ${exercise.unit}`}</div></li>
+                    <li><i onClick={(e) => deleteExercise(e, exercise._id, i)} className="fas fa-times-circle delete-exercise"></i></li>
+                  </ul>
+                </li>
+              )
+            })}
+          </ul> 
+        }
       </section>
     </div>
   );

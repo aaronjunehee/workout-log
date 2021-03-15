@@ -1,5 +1,5 @@
 const express = require('express');
-const { getLogsByUser, createLog, findLog, updateLog, deleteExerciseByID } = require('../controllers/logs')
+const { getLogByDate, createLog, findLog, updateLog, deleteExerciseByID } = require('../controllers/logs')
 const { verifyToken } = require('../middleware/verifyToken')
 
 const router = express.Router()
@@ -9,8 +9,8 @@ router.route('/')
 
   .get(async (req, res) => {
     const { date } = req.query
-    const logs = await getLogsByUser(req.user.id, date)
-    res.json(logs)
+    const log = await getLogByDate(req.user.id, date)
+    res.json(log)
   })
 
   .post(async (req, res) => {
