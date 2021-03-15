@@ -15,7 +15,7 @@ function WorkoutLog(props) {
         date: date.toLocaleDateString()
       }))
       const data = await response.json()
-      setLog(data)
+      setLog(data || {})
     } catch (e) {
       console.log(e)
     }
@@ -48,6 +48,11 @@ function WorkoutLog(props) {
     }
   }
 
+  const checkLog = () => {
+    const isEmpty = Object.keys(log).length === 0 || log.exercises.length === 0
+    return isEmpty
+  }
+
   return (
     <div className="dashboard">
       <nav className="navigation">
@@ -67,7 +72,7 @@ function WorkoutLog(props) {
         </div>
       </section>
       <section className="user-logs">
-        { Object.keys(log).length === 0 ? <div className="no-logs"><p>zzzzzzzz</p><i className="fas fa-bed"></i></div> :
+        { checkLog() ? <div className="no-logs"><p>zzzzzzzz</p><i className="fas fa-bed"></i></div> :
           <ul className="user-logs-wrapper">
             { log.exercises.map((exercise, i) => {
               return (

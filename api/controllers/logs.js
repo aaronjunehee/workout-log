@@ -2,29 +2,18 @@ const Log = require('../models/Log')
 
 exports.getLogByDate = async (userID, date) => {
   try {
-    const log = await Log
-      .findOne({ user: userID, date: date })
-    return log || {}
-  } catch (err) {
-    throw err
-  }
-}
-
-exports.createLog = async ({ date, exercises, user }) => {
-  console.log('controller', user)
-  try {
-    const newLog = new Log({ date, exercises, user })
-    const log = await newLog.save()
+    const log = await Log.findOne({ user: userID, date: date })
     return log
   } catch (err) {
     throw err
   }
 }
 
-exports.findLog = async ({ date, user }) => {
+exports.createLog = async ({ date, exercises, user }) => {
   try {
-    const [existingLog] = await Log.find({ date, user })
-    return existingLog
+    const newLog = new Log({ date, exercises, user })
+    const log = await newLog.save()
+    return log
   } catch (err) {
     throw err
   }

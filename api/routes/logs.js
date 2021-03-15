@@ -1,5 +1,5 @@
 const express = require('express');
-const { getLogByDate, createLog, findLog, updateLog, deleteExerciseByID } = require('../controllers/logs')
+const { getLogByDate, createLog, updateLog, deleteExerciseByID } = require('../controllers/logs')
 const { verifyToken } = require('../middleware/verifyToken')
 
 const router = express.Router()
@@ -14,14 +14,17 @@ router.route('/')
   })
 
   .post(async (req, res) => {
+    const date = req.body.date
+    const user = req.user.id
+
     const newLog = {
-      date: req.body.date,
+      date,
       exercises: req.body.exercises,
-      user: req.user.id
+      user
     }
 
     let log
-    const existingLog = await findLog(newLog)
+    const existingLog = await getLogByDate(user, date)
 
     if (existingLog) {
       log = await updateLog(existingLog, newLog)
@@ -36,7 +39,7 @@ router.route('/')
     const user = req.user.id
     const deleteID = req.query.deleteID
 
-    const log = await findLog({ date, user })
+    const log = await getLogByDate(user, date)
 
     await deleteExerciseByID(log, deleteID)
 
