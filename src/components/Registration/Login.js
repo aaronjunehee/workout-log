@@ -81,7 +81,7 @@ function Login(props) {
             name="email"
             autoComplete="email"
             autoFocus
-            defaultValue={email}
+            value={email}
             className={classes.textField}
             onChange={(e) => setEmail(e.target.value)}
             error={error.toLowerCase().includes('email')}
@@ -94,7 +94,7 @@ function Login(props) {
             id="password"
             name="password"
             autoComplete="current-password"
-            defaultValue={password}
+            value={password}
             className={classes.textField}
             type={showPassword ? "text" : "password"}
             onChange={(e) => setPassword(e.target.value)}
