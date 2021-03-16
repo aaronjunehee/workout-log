@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 import { useEffect, useState, useCallback } from 'react';
 import AddLog from './AddLog';
 
-function WorkoutLog(props) {
+function Dashboard(props) {
   const [log, setLog] = useState({})
   const [date, setDate] = useState(new Date())
 
@@ -43,8 +43,8 @@ function WorkoutLog(props) {
       const logState = {...log}
       logState.exercises.splice(i, 1)
       setLog(logState)
-    } catch (error) {
-
+    } catch (err) {
+      console.log(err)
     }
   }
 
@@ -92,4 +92,4 @@ function WorkoutLog(props) {
     </div>
   );
 }
-export default WorkoutLog;
+export default Dashboard
