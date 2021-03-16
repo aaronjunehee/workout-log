@@ -99,6 +99,7 @@ function SignUp(props) {
             name="firstName"
             autoFocus
             className={classes.textField}
+            value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             error={error.toLowerCase().includes('first name')}
             helperText={error.toLowerCase().includes('first name') ? error : ''}
@@ -110,6 +111,7 @@ function SignUp(props) {
             id="lastName"
             name="lastName"
             className={classes.textField}
+            value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             error={error.toLowerCase().includes('last name')}
             helperText={error.toLowerCase().includes('last name') ? error : ''}
@@ -121,6 +123,7 @@ function SignUp(props) {
             id="email"
             name="email"
             className={classes.textField}
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
             error={error.toLowerCase().includes('email')}
             helperText={error.toLowerCase().includes('email') ? error : ''}
@@ -132,6 +135,7 @@ function SignUp(props) {
             id="password"
             name="password"
             className={classes.textField}
+            value={password}
             type={showPassword ? "text" : "password"}
             onChange={(e) => setPassword(e.target.value)}
             error={error.toLowerCase().includes('password')}
