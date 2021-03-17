@@ -134,4 +134,31 @@
       cursor: pointer;
     }
   }
+
+  @media (max-width: 950px) {
+    grid-template-columns: 100%;
+    grid-template-rows: 150px auto auto;
+    height: auto;
+    overflow: auto;
+    .navigation {
+      display: flex;
+      align-items: center;
+      .logo {
+        width: 150px;
+        height: 150px;
+        margin-top: 0;
+      }
+      .logout-button {
+        margin: 0 0 0 20px;
+      }
+    }
+    .controller {
+      display: flex;
+    }
+  }
+  @media (max-width: 683px) {
+    .controller {
+      flex-direction: column;
+    }
+  }
 }
