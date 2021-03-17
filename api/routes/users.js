@@ -26,7 +26,7 @@ router.route('/')
         res.status(400).json({ message: `${dataString} must be provided` })
         return
       }
-      if (req.body && req.body['email']) {
+      if (req.body && req.body.email) {
         const isValid = validateEmail(email)
         if (!isValid) {
           res.status(400).json({ message: 'Please enter a valid email address' })
@@ -39,7 +39,6 @@ router.route('/')
       const user = await createUser({ email, password, firstName, lastName })
       res.json({ id: user._id})
     } catch(err) {
-      console.log(err)
       res.status(500).json({ message: 'internal server error'})
     }
   })
@@ -48,18 +47,15 @@ router.route('/login')
   .post(async (req, res) => {
     const { email, password } = req.body
 
-    for (const data in req.body) {
-      if (!req.body[data] || req.body[data] === ' ') {
-        const dataString = data.charAt(0).toUpperCase() + data.slice(1)
-        res.status(400).json({ message: `${dataString} must be provided` })
+    if (!req.body.password || req.body.password === ' ') {
+      res.status(400).json({ message: 'Password must be provided' })
+      return
+    }
+    if (req.body && req.body.email) {
+      const isValid = validateEmail(email)
+      if (!isValid) {
+        res.status(400).json({ message: 'Please enter a valid email address' })
         return
-      }
-      if (req.body && req.body['email']) {
-        const isValid = validateEmail(email)
-        if (!isValid) {
-          res.status(400).json({ message: 'Please enter a valid email address' })
-          return
-        }
       }
     }
 
@@ -100,7 +96,8 @@ router.use(verifyToken).route('/me')
       const user = await findUserById(req.user.id)
       res.json({ user })
     } catch(err) {
-      console.log(err)
+      res.status(500).json({ message: 'internal server error' });
+      return
     }
   })
   
